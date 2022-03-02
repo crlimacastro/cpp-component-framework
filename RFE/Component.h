@@ -2,15 +2,13 @@
 
 namespace rfe
 {
-	class Entity;
-
 	// Inherit to create your own Components
 	// You may override either of the following protected virtual methods to define functionality
-	// OnLoad()			Called once when the scene loads
-	// OnStart()		Called on scene load if the component/entity was enabled on Scene Load or the first time the component is enabled
-	// OnEnable()		Called every time the component is enabled
-	// OnDisable()		Called every time the compoenent is disabled
-	// OnUpdate()		Called on Scene Update
+	// OnLoad()		Called once when the scene loads
+	// OnStart()	Called on scene load if the component/entity was enabled on Scene Load or the first time the component is enabled
+	// OnEnable()	Called every time the component is enabled
+	// OnDisable()	Called every time the compoenent is disabled
+	// OnUpdate()	Called on Scene Update
 	class RFE_API Component
 	{
 	public:
@@ -18,7 +16,7 @@ namespace rfe
 	public:
 		Component() = default;
 
-		Entity* GetEntity() const;
+		Entity *GetEntity() const;
 		bool GetEnabled() const;
 		void SetEnabled(bool value);
 		void Update();
@@ -39,4 +37,5 @@ namespace rfe
 		void Load();
 		void Start();
 	};
+
 }

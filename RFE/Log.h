@@ -1,9 +1,12 @@
 #pragma once
 
+namespace rfe
+{
+	RFE_API void Log(std::string msg);
+}
+
 #ifdef _DEBUG
-#include <iostream>
-#define RFE_LOG(msg) std::cout << "[LOG] " << msg << std::endl;
+#define RFE_LOG(msg) rfe::Log(msg)
 #else
 #define RFE_LOG(msg)
 #endif
-

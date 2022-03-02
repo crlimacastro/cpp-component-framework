@@ -3,87 +3,64 @@
 #include "Vector2D.h"
 #include "Monitor.h"
 
-namespace rfe
+namespace rfe::Window
 {
-	// Singleton for Window functionality
-	class RFE_API Window
+	RFE_API void Open();
+	RFE_API bool ShouldClose();
+	RFE_API void Close();
+
+	// Visibility Logic
+	RFE_API bool IsOpen();
+	RFE_API bool IsReady();
+	RFE_API bool IsHidden();
+	RFE_API bool IsMinimized();
+	RFE_API bool IsMaximized();
+	RFE_API bool IsFocused();
+	// Returns if Window has been resized last frame
+	RFE_API bool IsResized();
+	RFE_API bool IsFullScreen();
+	RFE_API void SetFullScreen(bool value);
+	RFE_API void ToggleFullScreen();
+	RFE_API void Maximize();
+	RFE_API void Minimize();
+	RFE_API void Restore();
+
+	// State Logic
+	RFE_API bool IsState(unsigned int flag);
+	RFE_API void SetState(unsigned int flags);
+	RFE_API void ClearState(unsigned int flags);
+
+	// Icon/Title/Position Logic
+	RFE_API const std::shared_ptr<Image> GetIcon();
+	RFE_API void SetIcon(const Image& value);
+	RFE_API const char* GetTitle();
+	RFE_API void SetTitle(const char* value);
+	RFE_API Vector2D<float> GetPosition();
+	RFE_API void SetPosition(const Vector2D<int>& value);
+
+	// Sizing Logic
+	struct RFE_API WindowSize
 	{
-	public:
-		static Window& Get();
-		void Open() const;
-		bool ShouldClose() const;
-		void Close() const;
-
-		// Visibility Logic
-	public:
-		bool IsOpen() const;
-		bool IsReady() const;
-		bool IsHidden() const;
-		bool IsMinimized() const;
-		bool IsMaximized() const;
-		bool IsFocused() const;
-		// Returns if Window has been resized last frame
-		bool IsResized() const;
-		bool IsFullScreen() const;
-		void SetFullScreen(bool value) const;
-		void ToggleFullScreen() const;
-		void Maximize() const;
-		void Minimize() const;
-		void Restore() const;
-
-		// State Logic
-	public:
-		bool IsState(unsigned int flag) const;
-		void SetState(unsigned int flags) const;
-		void ClearState(unsigned int flags) const;
-
-		// Icon/Title/Position Logic
-	public:
-		const Image& GetIcon() const;
-		void SetIcon(const Image& value);
-		const char* GetTitle() const;
-		void SetTitle(const char* value);
-		Vector2D<float> GetPosition() const;
-		void SetPosition(const Vector2D<int>& value) const;
-
-		// Sizing Logic
-	public:
-		struct WindowSize
-		{
-			int width;
-			int height;
-		};
-		const WindowSize& GetSize() const;
-		void SetSize(int width, int height);
-		int GetWidth() const;
-		void SetWidth(int value);
-		int GetHeight() const;
-		void SetHeight(int value);
-		const WindowSize& GetMinSize() const;
-		void SetMinSize(int width, int height);
-		int GetMinWidth() const;
-		void SetMinWidth(int value);
-		int GetMinHeight() const;
-		void SetMinHeight(int value);
-
-		// Monitor Logic
-	public:
-		const Monitor GetMonitor() const;
-		void SetMonitor(int value) const;
-
-		// DPI Logic
-	public:
-		Vector2D<float> GetScaleDPI() const;
-
-	private:
-		Window();
-		Window(const Window&) = delete;
-		Window& operator=(const Window&) = delete;
-		~Window();
-
-		std::shared_ptr<Image> icon;
-		const char* title = "Raylib Fae Engine App";
-		WindowSize size{ 1280, 1024 };
-		WindowSize minSize{ 640, 480 };
+		int width;
+		int height;
 	};
+	RFE_API const WindowSize& GetSize();
+	RFE_API void SetSize(int width, int height);
+	RFE_API int GetWidth();
+	RFE_API void SetWidth(int value);
+	RFE_API int GetHeight();
+	RFE_API void SetHeight(int value);
+	RFE_API const WindowSize& GetMinSize();
+	RFE_API void SetMinSize(int width, int height);
+	RFE_API int GetMinWidth();
+	RFE_API void SetMinWidth(int value);
+	RFE_API int GetMinHeight();
+	RFE_API void SetMinHeight(int value);
+
+	// Monitor Logic
+	RFE_API const Monitor GetMonitor();
+	RFE_API void SetMonitor(int value);
+
+	// DPI Logic
+	RFE_API Vector2D<float> GetScaleDPI();
 }

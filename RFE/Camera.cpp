@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Camera.h"
 
+#include "Component.h"
+
 void rfe::Camera::OnLoad()
 {
     camera.position = Vector3{ 10.0f, 10.0f, 8.0f };

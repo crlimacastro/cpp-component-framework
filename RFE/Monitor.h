@@ -20,14 +20,8 @@ namespace rfe
         int monitor;
     };
 
-    class RFE_API Monitors
+    namespace Monitors
     {
-    public:
-        static const std::vector<Monitor> GetMonitors();
-    private:
-        Monitors() = delete;
-        Monitors(const Monitors&) = delete;
-        Monitors& operator=(const Monitors&) = delete;
-        ~Monitors() = delete;
-    };
+        RFE_API const std::vector<Monitor> GetMonitors();
+    }
 }

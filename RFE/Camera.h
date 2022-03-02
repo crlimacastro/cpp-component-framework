@@ -4,7 +4,7 @@
 
 namespace rfe
 {
-	struct RFE_API Camera : public Component
+	class RFE_API Camera : public Component
 	{
 	protected:
 		void OnLoad() override;

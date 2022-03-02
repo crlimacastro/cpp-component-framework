@@ -51,7 +51,7 @@
     <ClInclude Include="Vector2D.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3D.h">
+    <ClInclude Include="Vector3f.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
@@ -95,12 +95,6 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Clipboard.cpp">
-      <Filter>src\Core\Static</Filter>
-    </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>src\Core\Static</Filter>
-    </ClCompile>
     <ClCompile Include="Monitor.cpp">
       <Filter>src\Core\Static</Filter>
     </ClCompile>
@@ -124,6 +118,21 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>src\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraPrefab.cpp">
+      <Filter>src\ECS\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Clipboard.cpp">
+      <Filter>src\Core\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>src\Core\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3f.cpp">
+      <Filter>src\Core\Structs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

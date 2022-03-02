@@ -1,22 +1,13 @@
 #pragma once
 
 // Mouse Cursor
-namespace rfe
+namespace rfe::Cursor
 {
-	class RFE_API Cursor
-	{
-	public:
-		static void Show();
-		static void Hide();
-		static bool IsVisible();
-		static void ToggleVisible();
-		static void Enable();
-		static void Disable();
-		static bool IsOnScreen();
-	private:
-		Cursor() = delete;
-		Cursor(const Cursor&) = delete;
-		Cursor& operator=(const Cursor&) = delete;
-		~Cursor() = delete;
-	};
+	RFE_API void Show();
+	RFE_API void Hide();
+	RFE_API bool IsVisible();
+	RFE_API void ToggleVisible();
+	RFE_API void Enable();
+	RFE_API void Disable();
+	RFE_API bool IsOnScreen();
 }

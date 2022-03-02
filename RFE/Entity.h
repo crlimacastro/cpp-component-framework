@@ -14,21 +14,21 @@ namespace rfe
 		bool GetEnabled() const;
 		void SetEnabled(bool value);
 
-		void SetParent(Entity *entity);
-		void AddChild(Entity& entity);
-		void RemoveChild(Entity& entity);
+		void SetParent(std::shared_ptr<Entity> entity);
+		void AddChild(std::shared_ptr<Entity> entity);
+		void RemoveChild(std::shared_ptr<Entity> entity);
 		void ClearChildren();
 
-		static void Destroy(const Entity& entity);
+		static void Destroy(std::shared_ptr<Entity> entity);
 
 		// Component Logic
 	public:
 		template <typename T>
 		std::shared_ptr<T> AddComponent()
 		{
-			std::shared_ptr<T> component = std::make_shared<T>();
+			auto component = std::make_shared<T>();
 			component->entity = this;
-			components.insert(component);
+			components.push_back(component);
 			return component;
 		}
 
@@ -36,15 +36,14 @@ namespace rfe
 		template <typename T>
 		std::shared_ptr<T> RemoveComponent()
 		{
-			auto it = components.erase(std::remove_if(components.begin(), components.end(), [](auto c)
-				{ return dynamic_cast<T&>(*c); }),
-				components.end());
-
-			if (it != components.end())
+			for (auto it = components.begin(); it < components.end(); it++)
 			{
-				(*it)->entity = nullptr;
-				delete* it;
-				return *it;
+				if (auto t = std::dynamic_pointer_cast<T>(*it); t != nullptr)
+				{
+					t->entity = nullptr;
+					components.erase(it);
+					return t;
+				}
 			}
 
 			return nullptr;
@@ -54,18 +53,15 @@ namespace rfe
 		template <typename T>
 		void RemoveComponents()
 		{
-			std::erase_if(components, [](auto& c) { 
+			std::erase_if(components, [](auto& c)
 				{
-					auto isT = dynamic_cast<T&>(*c);
-					if (isT)
+					if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
 					{
-						c->entity = nullptr;
-						delete c;
+						t->entity = nullptr;
 						return true;
 					}
 
 					return false;
-				}
 				});
 		}
 
@@ -75,19 +71,20 @@ namespace rfe
 			{
 				c->entity = nullptr;
 			}
+
 			components.clear();
 		}
 
 		// Gets the first Component found of type
 		template <typename T>
-		const std::shared_ptr<T> GetComponent() const
+		std::shared_ptr<T> GetComponent() const
 		{
-			auto it = std::find_if(components.begin(), components.end(), [](auto& c)
-				{ return dynamic_cast<T&>(*c); });
-
-			if (it != components.end())
+			for (auto& c : components)
 			{
-				return *it;
+				if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
+				{
+					return t;
+				}
 			}
 
 			return nullptr;
@@ -98,19 +95,19 @@ namespace rfe
 		const std::shared_ptr<T> GetComponentInChildren() const
 		{
 			std::queue<shared_ptr<T>> next;
-			next.push(std::make_shared<Entity>(this));
+			next.push(std::shared_ptr<Entity>(this));
 
 			while (!next.empty())
 			{
 				auto& entity = next.front();
 				next.pop();
 
-				auto it = std::find_if(components.begin(), components.end(), [](auto& c)
-					{ return dynamic_cast<T&>(*c); });
-
-				if (it != components.end())
+				for (auto& c : entity.components)
 				{
-					return *it;
+					if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
+					{
+						return t;
+					}
 				}
 
 				for (auto& child : entity.children)
@@ -126,12 +123,12 @@ namespace rfe
 		template <typename T>
 		const std::shared_ptr<T> GetComponentInParent() const
 		{
-			auto it = std::find_if(components.begin(), components.end(), [](auto& c)
+			/*auto it = std::find_if(components.begin(), components.end(), [](auto& c)
 				{ return dynamic_cast<T&>(*c); });
 
 			if (it != components.end())
 			{
-				return *it;
+				return std::make_shared<T>(*it);
 			}
 
 			if (parent)
@@ -141,7 +138,9 @@ namespace rfe
 			else
 			{
 				return nullptr;
-			}
+			}*/
+
+			return nullptr;
 		}
 
 		// Gets all Components found of type
@@ -149,8 +148,8 @@ namespace rfe
 		const std::unordered_set<std::shared_ptr<T>> GetComponents() const
 		{
 			std::unordered_set<std::shared_ptr<T>> out;
-			std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
-				{ return dynamic_cast<T&>(*c); });
+			/*std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
+				{ return dynamic_cast<T&>(*c); });*/
 			return out;
 		}
 
@@ -159,14 +158,14 @@ namespace rfe
 		const std::unordered_set<std::shared_ptr<T>> GetComponentsInChildren() const
 		{
 			std::unordered_set<std::shared_ptr<T>> out;
-			std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
+			/*std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
 				{ return dynamic_cast<T&>(*c); });
 
 			for (auto& child : children)
 			{
 				auto &childComponents = child->GetComponentsInChildren<T>();
 				out.insert(childComponents.begin(), childComponents.end());
-			}
+			}*/
 
 			return out;
 		}
@@ -176,24 +175,23 @@ namespace rfe
 		const std::unordered_set<std::shared_ptr<T>> GetComponentsInParent() const
 		{
 			std::unordered_set<std::shared_ptr<T>> out;
-			std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
+			/*std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
 				{ return dynamic_cast<T&>(*c); });
 
 			if (parent)
 			{
 				auto &parentComponents = parent->GetComponentsInParent<T>();
 				out.insert(parentComponents.begin(), parentComponents.end());
-			}
+			}*/
 
 			return out;
 		}
 
 	private:
 		bool enabled = true;
-
-		Entity *parent = nullptr;
-		std::unordered_set<Entity*> children;
-		std::unordered_set<std::shared_ptr<Component>> components;
+		std::shared_ptr<Entity> parent = nullptr;
+		std::unordered_set<std::shared_ptr<Entity>> children;
+		std::vector<std::shared_ptr<Component>> components;
 
 		void Load();
 		void Start();

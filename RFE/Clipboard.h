@@ -1,18 +1,8 @@
 #pragma once
 
 // Copy/Paste Clipboard Logic
-namespace rfe
+namespace rfe::Clipboard
 {
-    class RFE_API Clipboard
-    {
-    public:
-        static const char* GetText();
-        static void SetText(const char* value);
-    private:
-        Clipboard() = delete;
-        Clipboard(const Clipboard&) = delete;
-        Clipboard& operator=(const Clipboard&) = delete;
-        ~Clipboard() = delete;
-    };
-    
+	RFE_API const char* GetText();
+	RFE_API void SetText(const char* value);
 }

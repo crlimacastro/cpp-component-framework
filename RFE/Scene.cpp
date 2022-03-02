@@ -1,22 +1,14 @@
 #include "pch.h"
 #include "Scene.h"
 
-void rfe::Scene::AddEntity(const Entity& entity)
+void rfe::Scene::AddEntity(std::shared_ptr<Entity> entity)
 {
-	entities.insert(std::make_shared<Entity>(entity));
+	entities.emplace(entity);
 }
 
-void rfe::Scene::RemoveEntity(const Entity& entity)
+void rfe::Scene::RemoveEntity(std::shared_ptr<Entity> entity)
 {
-	std::erase_if(entities, [&entity](auto e) {
-		if (e.get() == &entity)
-		{
-			e->SetParent(nullptr);
-			return true;
-		}
-
-		return false;
-		});
+	entities.erase(entity);
 }
 
 void rfe::Scene::ClearEntities()
@@ -40,6 +32,8 @@ void rfe::Scene::Load()
 	{
 		entity->Load();
 	}
+
+	OnStart();
 
 	for (auto& entity : entities)
 	{

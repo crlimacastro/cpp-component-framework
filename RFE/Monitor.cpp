@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Monitor.h"
 
+#include "Vector2D.h"
+
 rfe::Vector2D<float> rfe::Monitor::GetPosition() const
 {
     Vector2 position = GetMonitorPosition(monitor);

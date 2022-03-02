@@ -1,7 +1,10 @@
 #pragma once
 
 #include "RFE.h"
-#include "TestScene.h"
+
+#include "Components.h"
+#include "Prefabs.h"
+#include "Scenes.h"
 
 class TestApp : public rfe::Application
 {

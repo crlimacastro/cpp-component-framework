@@ -5,53 +5,53 @@
 
 rfe::Entity* rfe::Component::GetEntity() const
 {
-    return entity;
+	return entity;
 }
 
 bool rfe::Component::GetEnabled() const
 {
-    return enabled;
+	return enabled;
 }
 
 void rfe::Component::SetEnabled(bool value)
 {
-    enabled = value;
+	enabled = value;
 
-    Start();
+	Start();
 
-    if (enabled)
-    {
-        OnEnable();
-    }
-    else
-    {
-        OnDisable();
-    }
+	if (enabled)
+	{
+		OnEnable();
+	}
+	else
+	{
+		OnDisable();
+	}
 }
 
 void rfe::Component::Load()
 {
-    OnLoad();
+	OnLoad();
 }
 
 void rfe::Component::Start()
 {
-    if (started || !enabled)
-    {
-        return;
-    }
+	if (started || !enabled)
+	{
+		return;
+	}
 
-    started = true;
+	started = true;
 
-    OnStart();
+	OnStart();
 }
 
 void rfe::Component::Update()
 {
-    if (!enabled)
-    {
-        return;
-    }
+	if (!enabled)
+	{
+		return;
+	}
 
-    OnUpdate();
+	OnUpdate();
 }

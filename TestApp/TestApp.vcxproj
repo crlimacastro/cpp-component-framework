@@ -176,6 +176,12 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Components.h" />
+    <ClInclude Include="FPSDrawer.h" />
+    <ClInclude Include="FPSToggler.h" />
+    <ClInclude Include="KeyboardController.h" />
+    <ClInclude Include="Prefabs.h" />
+    <ClInclude Include="Scenes.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="TestApp.h" />
   </ItemGroup>

@@ -2,11 +2,13 @@
 #include "pch.h"
 
 // Raylib Fae Engine
+
+// Debug
 #include "Log.h"
 
  // Core/Structs
 #include "Vector2D.h"
-#include "Vector3D.h"
+#include "Vector3f.h"
 #include "Quaternion.h"
 
 // Core (independent)
@@ -20,8 +22,8 @@
 // ECS
 #include "Component.h"
 #include "Entity.h"
-#include "Scene.h"
 #include "Prefab.h"
+#include "Scene.h"
 #include "SceneManager.h"
 
 // ECS/Components

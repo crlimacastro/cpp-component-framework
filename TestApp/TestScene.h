@@ -1,18 +1,21 @@
 #pragma once
 
-#include "RFE.h"
-
 class TestScene : public rfe::Scene
 {
-public:
-	TestScene() = default;
-
 protected:
 	void OnLoad() override
 	{
-		auto cameraEntity = std::make_shared<rfe::Entity>();
-		//cameraEntity->AddComponent<rfe::Transform>();
-		cameraEntity->AddComponent<rfe::Camera>();
-		AddEntity(*cameraEntity);
+		auto cameraPrefab = rfe::CameraPrefab();
+		auto cameraEntity = cameraPrefab.Create();
+		AddEntity(cameraEntity);
+
+		auto fpsDrawerEntity = std::make_shared<rfe::Entity>();
+		auto fpsDrawerTransform = fpsDrawerEntity->AddComponent<rfe::Transform>();
+		fpsDrawerTransform->position = rfe::Vector3f(20.0f, 20.0f, 0.0f);
+		auto fpsDrawer = fpsDrawerEntity->AddComponent<FPSDrawer>();
+		fpsDrawer->SetEnabled(false);
+		auto fpsToggler = fpsDrawerEntity->AddComponent<FPSToggler>();
+
+		AddEntity(fpsDrawerEntity);
 	}
 };
