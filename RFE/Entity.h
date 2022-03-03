@@ -10,6 +10,7 @@ namespace rfe
 	{
 	public:
 		friend class Scene;
+		friend class Component;
 	public:
 		static std::shared_ptr<Entity> Create();
 
@@ -129,66 +130,88 @@ namespace rfe
 		template <typename T>
 		const std::shared_ptr<T> GetComponentInParent() const
 		{
-			/*auto it = std::find_if(components.begin(), components.end(), [](auto& c)
-				{ return dynamic_cast<T&>(*c); });
-
-			if (it != components.end())
+			for (auto& c : components)
 			{
-				return std::make_shared<T>(*it);
+				if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
+				{
+					return t;
+				}
 			}
 
 			if (parent)
 			{
 				return parent->GetComponentInParent<T>();
 			}
-			else
-			{
-				return nullptr;
-			}*/
 
 			return nullptr;
 		}
 
 		// Gets all Components found of type
 		template <typename T>
-		const std::unordered_set<std::shared_ptr<T>> GetComponents() const
+		const std::vector<std::shared_ptr<T>> GetComponents() const
 		{
-			std::unordered_set<std::shared_ptr<T>> out;
-			/*std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
-				{ return dynamic_cast<T&>(*c); });*/
+			std::vector<std::shared_ptr<T>> out;
+
+			for (auto& c : components)
+			{
+				if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
+				{
+					out.push_back(t);
+				}
+			}
+
 			return out;
 		}
 
 		// Gets all Components found of type in Entity and its children
 		template <typename T>
-		const std::unordered_set<std::shared_ptr<T>> GetComponentsInChildren() const
+		const std::vector<std::shared_ptr<T>> GetComponentsInChildren() const
 		{
-			std::unordered_set<std::shared_ptr<T>> out;
-			/*std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
-				{ return dynamic_cast<T&>(*c); });
+			std::vector<std::shared_ptr<T>> out;
 
-			for (auto& child : children)
+			std::queue<shared_ptr<T>> next;
+			next.push(shared_from_this());
+
+			while (!next.empty())
 			{
-				auto &childComponents = child->GetComponentsInChildren<T>();
-				out.insert(childComponents.begin(), childComponents.end());
-			}*/
+				auto& entity = next.front();
+				next.pop();
+
+				for (auto& c : entity.components)
+				{
+					if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
+					{
+						out.push_back(t);
+					}
+				}
+
+				for (auto& child : entity.children)
+				{
+					next.push(child);
+				}
+			}
 
 			return out;
 		}
 
 		// Gets all Components found of type in Entity and its parents
 		template <typename T>
-		const std::unordered_set<std::shared_ptr<T>> GetComponentsInParent() const
+		const std::vector<std::shared_ptr<T>> GetComponentsInParent() const
 		{
-			std::unordered_set<std::shared_ptr<T>> out;
-			/*std::copy_if(components.begin(), components.begin(), std::back_inserter(out), [](auto& c)
-				{ return dynamic_cast<T&>(*c); });
+			std::vector<std::shared_ptr<T>> out;
+
+			for (auto& c : components)
+			{
+				if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
+				{
+					out.push_back(t);
+				}
+			}
 
 			if (parent)
 			{
-				auto &parentComponents = parent->GetComponentsInParent<T>();
-				out.insert(parentComponents.begin(), parentComponents.end());
-			}*/
+				return parent->GetComponentInParent<T>();
+			}
 
 			return out;
 		}

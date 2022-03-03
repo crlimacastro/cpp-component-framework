@@ -10,6 +10,9 @@
     <Filter Include="src\Components">
       <UniqueIdentifier>{bdd0bee7-0cfa-492a-9f44-2efb3962efdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Prefabs">
+      <UniqueIdentifier>{28559a89-9482-4660-97eb-1977714b62c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="CallbacksTesterToggler.h">
       <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSCounterPrefab.h">
+      <Filter>src\Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

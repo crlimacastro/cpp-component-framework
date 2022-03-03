@@ -178,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="CallbacksTesterToggler.h" />
     <ClInclude Include="Components.h" />
+    <ClInclude Include="FPSCounterPrefab.h" />
     <ClInclude Include="FPSDrawer.h" />
     <ClInclude Include="FPSToggler.h" />
     <ClInclude Include="KeyboardController.h" />

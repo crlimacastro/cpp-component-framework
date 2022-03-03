@@ -17,6 +17,7 @@
 #include <queue>
 #include <iterator>
 #include <algorithm>
+#include <functional>
 
 #include <raylib.h>
 

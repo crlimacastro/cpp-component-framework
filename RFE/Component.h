@@ -2,7 +2,9 @@
 
 namespace rfe
 {
-	// Inherit to create your own Components
+	class Entity;
+
+	// Inherit to create your own GetEntity()->components
 	// Overrides:
 	// protected OnLoad() -> Called once when the scene loads (after Scene OnLoad())
 	// protected OnStart() -> Called once the first time it is on the Scene enabled (after Component OnLoad() and Scene OnStart())
