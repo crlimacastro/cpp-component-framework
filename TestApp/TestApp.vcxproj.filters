@@ -41,5 +41,11 @@
     <ClInclude Include="FPSToggler.h">
       <Filter>src\Components</Filter>
     </ClInclude>
+    <ClInclude Include="CallbacksTester.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CallbacksTesterToggler.h">
+      <Filter>src\Components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

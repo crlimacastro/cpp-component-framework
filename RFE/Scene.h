@@ -5,8 +5,10 @@
 namespace rfe
 {
     // Inherit to create your own Scenes
-    // Override abstract protected OnLoad() to add entities to the scene
-    // You may override virtual protected OnStart() to define functionality after everything has loaded
+    // Overrides:
+    // protected OnLoad() [Required] -> Define entities added to the Scene
+    // protected OnStart() -> Define functionality for after every Component has Loaded but before they Start
+    // protected OnUnload() -> Define clean up functionality after every Component has been Unloaded (no need to remove entities, it is done automagically)
     class RFE_API Scene
     {
     public:
@@ -21,11 +23,13 @@ namespace rfe
     protected:
         virtual void OnLoad() = 0;
         virtual void OnStart() {}
+        virtual void OnUnload() {}
 
     private:
         std::unordered_set<std::shared_ptr<Entity>> entities;
 
         void Update();
         void Load();
+        void Unload();
     };
 }

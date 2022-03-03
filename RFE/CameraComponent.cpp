@@ -1,9 +1,9 @@
 #include "pch.h"
-#include "Camera.h"
+#include "CameraComponent.h"
 
 #include "Component.h"
 
-void rfe::Camera::OnLoad()
+void rfe::CameraComponent::OnLoad()
 {
     camera.position = Vector3{ 10.0f, 10.0f, 8.0f };
     camera.target = Vector3{ 0.0f, 0.0f, 0.0f };
@@ -13,7 +13,7 @@ void rfe::Camera::OnLoad()
     //SetCameraMode(camera, CAMERA_ORBITAL);
 }
 
-void rfe::Camera::OnUpdate()
+void rfe::CameraComponent::OnUpdate()
 {
     //UpdateCamera(&camera);
     BeginMode3D(camera);

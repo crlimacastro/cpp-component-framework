@@ -7,7 +7,7 @@
 #include "Log.h"
 
  // Core/Structs
-#include "Vector2D.h"
+#include "Vector2f.h"
 #include "Vector3f.h"
 #include "Quaternion.h"
 
@@ -28,11 +28,12 @@
 
 // ECS/Components
 #include "Transform.h"
-#include "Camera.h"
+#include "CameraComponent.h"
 
 // ECS/Prefabs
 #include "CameraPrefab.h"
 
 // Core (dependent)
 #include "Window.h"
+#include "ApplicationSettings.h"
 #include "Application.h"

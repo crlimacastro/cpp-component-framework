@@ -40,3 +40,13 @@ void rfe::Scene::Load()
 		entity->Start();
 	}
 }
+
+void rfe::Scene::Unload()
+{
+	for (auto& entity : entities)
+	{
+		entity->Unload();
+	}
+
+	OnUnload();
+}

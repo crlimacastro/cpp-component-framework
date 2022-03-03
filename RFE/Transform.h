@@ -10,7 +10,7 @@ namespace rfe
     {
     public:
         Vector3f position = Vector3f();
-        Quaternion<float> rotation = Quaternion<float>();
+        Quaternion rotation = Quaternion();
         Vector3f scale = Vector3f();
     };
 }

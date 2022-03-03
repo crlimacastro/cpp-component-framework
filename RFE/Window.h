@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Vector2D.h"
+#include "Vector2f.h"
 #include "Monitor.h"
 
 namespace rfe::Window
@@ -35,8 +35,8 @@ namespace rfe::Window
 	RFE_API void SetIcon(const Image& value);
 	RFE_API const char* GetTitle();
 	RFE_API void SetTitle(const char* value);
-	RFE_API Vector2D<float> GetPosition();
-	RFE_API void SetPosition(const Vector2D<int>& value);
+	RFE_API Vector2f GetPosition();
+	RFE_API void SetPosition(const Vector2f& value);
 
 	// Sizing Logic
 	struct RFE_API WindowSize
@@ -58,9 +58,9 @@ namespace rfe::Window
 	RFE_API void SetMinHeight(int value);
 
 	// Monitor Logic
-	RFE_API const Monitor GetMonitor();
+	RFE_API std::shared_ptr<Monitor> GetMonitor();
 	RFE_API void SetMonitor(int value);
 
 	// DPI Logic
-	RFE_API Vector2D<float> GetScaleDPI();
+	RFE_API Vector2f GetScaleDPI();
 }

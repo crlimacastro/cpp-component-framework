@@ -3,9 +3,9 @@
 
 #include "Entity.h"
 
-rfe::Entity* rfe::Component::GetEntity() const
+std::shared_ptr<rfe::Entity> rfe::Component::GetEntity() const
 {
-	return entity;
+	return entity.lock();
 }
 
 bool rfe::Component::GetEnabled() const
@@ -17,15 +17,22 @@ void rfe::Component::SetEnabled(bool value)
 {
 	enabled = value;
 
-	Start();
-
-	if (enabled)
+	if (enabled && !started)
 	{
-		OnEnable();
+		started = true;
+		OnStart();
 	}
-	else
+
+	if (started)
 	{
-		OnDisable();
+		if (enabled)
+		{
+			OnEnable();
+		}
+		else
+		{
+			OnDisable();
+		}
 	}
 }
 
@@ -44,6 +51,7 @@ void rfe::Component::Start()
 	started = true;
 
 	OnStart();
+	OnEnable();
 }
 
 void rfe::Component::Update()
@@ -54,4 +62,15 @@ void rfe::Component::Update()
 	}
 
 	OnUpdate();
+}
+
+void rfe::Component::Unload()
+{
+	if (enabled)
+	{
+		enabled = false;
+		OnDisable();
+	}
+
+	OnUnload();
 }

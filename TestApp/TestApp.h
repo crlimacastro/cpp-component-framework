@@ -13,7 +13,7 @@ public:
 protected:
     void OnStart() override
     {
-        SetStopKey(KEY_ESCAPE);
+        GetSettings()->SetForceStopKey(KEY_ESCAPE);
         rfe::SceneManager::LoadScene<TestScene>();
     }
 };

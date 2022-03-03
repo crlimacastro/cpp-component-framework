@@ -4,16 +4,22 @@
 
 namespace rfe
 {
-	class RFE_API Entity
+	// Private constructor to avoid Stack allocation. Create Entity with static rfe::Entity::Create()
+	// Handle Entities with std::shared_ptr<Entity>
+	class RFE_API Entity : public std::enable_shared_from_this<Entity>
 	{
 	public:
 		friend class Scene;
 	public:
-		Entity() = default;
+		static std::shared_ptr<Entity> Create();
 
 		bool GetEnabled() const;
 		void SetEnabled(bool value);
 
+		std::string GetName() const;
+		void SetName(const std::string value);
+
+		std::shared_ptr<Entity> GetParent() const;
 		void SetParent(std::shared_ptr<Entity> entity);
 		void AddChild(std::shared_ptr<Entity> entity);
 		void RemoveChild(std::shared_ptr<Entity> entity);
@@ -27,7 +33,7 @@ namespace rfe
 		std::shared_ptr<T> AddComponent()
 		{
 			auto component = std::make_shared<T>();
-			component->entity = this;
+			component->entity = shared_from_this();
 			components.push_back(component);
 			return component;
 		}
@@ -69,7 +75,7 @@ namespace rfe
 		{
 			for (auto& c : components)
 			{
-				c->entity = nullptr;
+				c->entity.reset();
 			}
 
 			components.clear();
@@ -95,7 +101,7 @@ namespace rfe
 		const std::shared_ptr<T> GetComponentInChildren() const
 		{
 			std::queue<shared_ptr<T>> next;
-			next.push(std::shared_ptr<Entity>(this));
+			next.push(shared_from_this());
 
 			while (!next.empty())
 			{
@@ -188,13 +194,21 @@ namespace rfe
 		}
 
 	private:
+		Entity() = default;
+		Entity(const Entity& other) = delete;
+		Entity(const Entity&& other) noexcept = delete;
+		Entity& operator=(const Entity& other) = delete;
+		Entity& operator=(Entity&& other) noexcept = delete;
+
 		bool enabled = true;
-		std::shared_ptr<Entity> parent = nullptr;
+		std::string name = "Entity";
+		std::weak_ptr<Entity> parent;
 		std::unordered_set<std::shared_ptr<Entity>> children;
 		std::vector<std::shared_ptr<Component>> components;
 
 		void Load();
 		void Start();
 		void Update();
+		void Unload();
 	};
 }

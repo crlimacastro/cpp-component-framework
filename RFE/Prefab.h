@@ -5,7 +5,8 @@
 namespace rfe
 {
 	// Inherit to create your own Prefabs
-	// Override public Create() to define the Entity
+	// Overrides:
+	// public Create() [Required] -> Define how entity is created, attach Components, and return the entity
 	class RFE_API Prefab
 	{
 	public:

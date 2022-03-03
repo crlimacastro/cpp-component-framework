@@ -3,14 +3,34 @@
 
 #include "Window.h"
 #include "SceneManager.h"
+#include "ApplicationSettings.h"
 
-#include "Cursor.h"
+rfe::Application* rfe::Application::runningApp = nullptr;
+
+rfe::Application* rfe::Application::GetRunningApp()
+{
+	return runningApp;
+}
+
+std::shared_ptr<rfe::Application::Settings> rfe::Application::GetSettings() const
+{
+	return settings;
+}
 
 void rfe::Application::Start()
 {
+	runningApp = this;
+
 	Window::Open();
-	SetExitKey(stopKey);
+
+	// Init Settings
+	SetTargetFPS(settings->GetTargetFPS());
+	settings->SetVsync(settings->HasVsync());
+	SetExitKey(settings->GetForceStopKey());
+
 	OnStart();
+
+	// Update Loop
 	while (!Window::ShouldClose())
 	{
 		Update();
@@ -19,71 +39,12 @@ void rfe::Application::Start()
 	Stop();
 }
 
-const Color& rfe::Application::GetClearColor() const
-{
-	return clearColor;
-}
-
-void rfe::Application::SetClearColor(const Color& value)
-{
-	clearColor = value;
-}
-
-int rfe::Application::GetTargetFPS() const
-{
-	if (vsync)
-	{
-		return Window::GetMonitor().GetRefreshRate();
-	}
-
-	return targetFPS;
-}
-
-void rfe::Application::TargetFPS(int value)
-{
-	targetFPS = value;
-
-	if (!vsync)
-	{
-		SetTargetFPS(value);
-	}
-}
-
-bool rfe::Application::HasVsync() const
-{
-	return vsync;
-}
-
-void rfe::Application::SetVsync(bool value)
-{
-	vsync = value;
-	if (vsync)
-	{
-		SetTargetFPS(Window::GetMonitor().GetRefreshRate());
-	}
-	else
-	{
-		SetTargetFPS(targetFPS);
-	}
-}
-
-int rfe::Application::GetStopKey() const
-{
-	return stopKey;
-}
-
-void rfe::Application::SetStopKey(int value)
-{
-	stopKey = value;
-	SetExitKey(value);
-}
-
-#include "Clipboard.h"
-
 void rfe::Application::Update()
 {
 	BeginDrawing();
-	ClearBackground(clearColor);
+	ClearBackground(settings->GetClearColor());
+
+	OnUpdate();
 
 	if (SceneManager::GetCurrentScene())
 	{
@@ -95,5 +56,8 @@ void rfe::Application::Update()
 
 void rfe::Application::Stop()
 {
+	OnStop();
+	SceneManager::GetCurrentScene()->Unload();
 	Window::Close();
+	runningApp = nullptr;
 }

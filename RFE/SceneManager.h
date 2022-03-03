@@ -12,14 +12,21 @@ namespace rfe
 		template <typename T>
 		static void LoadScene()
 		{
+			if (currentScene)
+			{
+				currentScene->Unload();
+			}
 			currentScene = std::make_shared<T>();
 			currentScene->Load();
 		}
 
 	private:
 		SceneManager() = default;
-		SceneManager(const SceneManager&) = delete;
-		SceneManager& operator=(const SceneManager&) = delete;
+		SceneManager(const SceneManager& other) = delete;
+		SceneManager(SceneManager&& other) = delete ;
+		SceneManager& operator=(const SceneManager& other) = delete;
+		SceneManager& operator=(SceneManager&& other) noexcept = delete;
+
 		static std::shared_ptr<Scene> currentScene;
 	};
 }

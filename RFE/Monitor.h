@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Vector2D.h"
+#include "Vector2f.h"
 
 namespace rfe
 {
     class RFE_API Monitor
     {
     public:
-        Monitor(int monitor = 0) : monitor(monitor) {}
-        Vector2D<float> GetPosition() const;
+        static std::shared_ptr<Monitor> Get(int monitor = 0);
+        Vector2f GetPosition() const;
         int GetWidth() const;
         int GetHeight() const;
         int GetPhysicalWidth() const;
@@ -17,11 +17,12 @@ namespace rfe
         const char* GetName() const;
 
     private:
+        Monitor(int monitor = 0) : monitor(monitor) {}
         int monitor;
     };
 
     namespace Monitors
     {
-        RFE_API const std::vector<Monitor> GetMonitors();
+        RFE_API const std::shared_ptr<std::vector<std::shared_ptr<Monitor>>> GetMonitors();
     }
 }

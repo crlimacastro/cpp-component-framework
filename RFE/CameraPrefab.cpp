@@ -4,12 +4,13 @@
 #include "Entity.h"
 #include "Prefab.h"
 #include "Transform.h"
-#include "Camera.h"
+#include "CameraComponent.h"
 
 std::shared_ptr<rfe::Entity> rfe::CameraPrefab::Create() const
 {
-	auto entity = std::make_shared<Entity>();
+	auto entity = Entity::Create();
+	entity->SetName("Camera");
 	entity->AddComponent<rfe::Transform>();
-	entity->AddComponent<rfe::Camera>();
+	entity->AddComponent<rfe::CameraComponent>();
 	return entity;
 }

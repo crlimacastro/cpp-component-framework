@@ -14,9 +14,9 @@ protected:
 	}
 	void OnUpdate() override
 	{
-		if (IsKeyPressed(KEY_SPACE))
+		if (IsKeyPressed(KEY_GRAVE))
 		{
-			fpsDrawer->SetEnabled(!GetEnabled());
+			fpsDrawer->SetEnabled(!fpsDrawer->GetEnabled());
 		}
 	}
 };

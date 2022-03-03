@@ -4,6 +4,11 @@
 #include "Component.h"
 #include "SceneManager.h"
 
+std::shared_ptr<rfe::Entity> rfe::Entity::Create()
+{
+	return std::shared_ptr<Entity>(new Entity());
+}
+
 bool rfe::Entity::GetEnabled() const
 {
 	return enabled;
@@ -31,20 +36,35 @@ void rfe::Entity::SetEnabled(bool value)
 	}
 }
 
+std::string rfe::Entity::GetName() const
+{
+	return name;
+}
+
+void rfe::Entity::SetName(const std::string value)
+{
+	name = value;
+}
+
+std::shared_ptr<rfe::Entity> rfe::Entity::GetParent() const
+{
+	return parent.lock();
+}
+
 void rfe::Entity::SetParent(std::shared_ptr<Entity> entity)
 {
-	if (entity.get() == this)
+	if (entity == shared_from_this())
 	{
 		return;
 	}
 
-	if (parent)
+	if (auto p = parent.lock())
 	{
-		for (auto& c : parent->children)
+		for (auto& child : p->children)
 		{
-			if (c.get() == this)
+			if (child == shared_from_this())
 			{
-				parent->children.erase(c);
+				p->children.erase(child);
 				break;
 			}
 		}
@@ -54,7 +74,7 @@ void rfe::Entity::SetParent(std::shared_ptr<Entity> entity)
 
 	if (entity)
 	{
-		entity->children.emplace(this);
+		entity->children.emplace(shared_from_this());
 	}
 }
 
@@ -62,18 +82,18 @@ void rfe::Entity::AddChild(std::shared_ptr<Entity> entity)
 {
 	children.emplace(entity);
 
-	if (entity->parent) {
-		entity->parent->children.erase(entity);
+	if (auto p = entity->parent.lock()) {
+		p->children.erase(entity);
 	}
 
-	entity->parent = std::shared_ptr<Entity>(this);
+	entity->parent = shared_from_this();
 }
 
 void rfe::Entity::RemoveChild(std::shared_ptr<Entity> entity)
 {
 	if (children.contains(entity))
 	{
-		entity->parent = nullptr;
+		entity->parent.reset();
 		children.erase(entity);
 	}
 }
@@ -82,7 +102,7 @@ void rfe::Entity::ClearChildren()
 {
 	for (auto& child : children)
 	{
-		child->parent = nullptr;
+		child->parent.reset();
 	}
 
 	children.clear();
@@ -99,6 +119,11 @@ void rfe::Entity::Load()
 	{
 		component->Load();
 	}
+
+	for (auto& child : children)
+	{
+		child->Load();
+	}
 }
 
 void rfe::Entity::Start()
@@ -112,6 +137,11 @@ void rfe::Entity::Start()
 	{
 		component->Start();
 	}
+
+	for (auto& child : children)
+	{
+		child->Start();
+	}
 }
 
 void rfe::Entity::Update()
@@ -124,5 +154,23 @@ void rfe::Entity::Update()
 	for (auto& component : components)
 	{
 		component->Update();
+	}
+
+	for (auto& child : children)
+	{
+		child->Update();
+	}
+}
+
+void rfe::Entity::Unload()
+{
+	for (auto& component : components)
+	{
+		component->Unload();
+	}
+
+	for (auto& child : children)
+	{
+		child->Unload();
 	}
 }
