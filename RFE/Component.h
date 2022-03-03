@@ -34,6 +34,11 @@ namespace rfe
 		virtual void OnUnload() {}
 
 	private:
+		Component(const Component& other) = delete;
+		Component(const Component&& other) noexcept = delete;
+		Component& operator=(const Component& other) = delete;
+		Component& operator=(Component&& other) noexcept = delete;
+
 		std::weak_ptr<Entity> entity;
 		bool enabled = true;
 		bool started = false;
