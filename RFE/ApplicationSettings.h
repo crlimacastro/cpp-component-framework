@@ -23,7 +23,6 @@ namespace rfe
 	private:
 		Color clearColor = RAYWHITE;
 		int targetFPS = -1;
-		bool vsync = false;
 		int forceStopKey = KEY_NULL;
 	};
 }

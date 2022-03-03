@@ -17,19 +17,27 @@ protected:
 	{
 		if (IsKeyDown(KEY_W))
 		{
-			transform->position.y -= speed;
+			transform->position.x -= speed;
 		}
 		if (IsKeyDown(KEY_A))
 		{
-			transform->position.x -= speed;
+			transform->position.z += speed;
 		}
 		if (IsKeyDown(KEY_S))
 		{
-			transform->position.y += speed;
+			transform->position.x += speed;
 		}
 		if (IsKeyDown(KEY_D))
 		{
-			transform->position.x += speed;
+			transform->position.z -= speed;
+		}
+		if (IsKeyDown(KEY_LEFT_SHIFT))
+		{
+			transform->position.y += speed;
+		}
+		if (IsKeyDown(KEY_LEFT_CONTROL))
+		{
+			transform->position.y -= speed;
 		}
 	}
 };

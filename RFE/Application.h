@@ -16,12 +16,14 @@ namespace rfe
 
     public:
         Application() = default;
+        ~Application();
 
         static Application *GetRunningApp();
 
         std::shared_ptr<Settings> GetSettings() const;
 
         void Start();
+        void Stop();
 
     protected:
         virtual void OnStart() = 0;
@@ -32,8 +34,12 @@ namespace rfe
         static Application *runningApp;
 
         std::shared_ptr<Settings> settings = std::make_shared<Settings>();
-
+        
         void Update();
-        void Stop();
+
+        // Memory Leak Detection Logic
+    private:
+        _CrtMemState checkpointPostRaylibInitWindow = _CrtMemState();
+        void InitMemLeakDetection();
     };
 }

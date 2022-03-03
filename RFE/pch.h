@@ -10,17 +10,29 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 
+// Memory Leak Detection
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
+#ifdef _DEBUG
+#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
+#define new DEBUG_NEW
+#endif
+
+// STD Library
 #include <string>
 #include <memory>
 #include <vector>
 #include <unordered_set>
 #include <queue>
+#include <ranges>
 #include <iterator>
 #include <algorithm>
 #include <functional>
 
+// Raylib
 #include <raylib.h>
 
+// DLL Export Macro
 #ifdef RFE_EXPORTS
 #define RFE_API __declspec(dllexport)   
 #else

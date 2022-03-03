@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Monitor.h"
 
-#include "Vector2f.h"
+#include "Vector2D.h"
 
 std::shared_ptr<rfe::Monitor> rfe::Monitor::Get(int monitor)
 {
@@ -13,10 +13,10 @@ std::shared_ptr<rfe::Monitor> rfe::Monitor::Get(int monitor)
     return std::shared_ptr<Monitor>(new Monitor(monitor));
 }
 
-rfe::Vector2f rfe::Monitor::GetPosition() const
+rfe::Vector2D<float> rfe::Monitor::GetPosition() const
 {
     Vector2 position = GetMonitorPosition(monitor);
-    return Vector2f{position.x, position.y};
+    return Vector2D<float>{position.x, position.y};
 }
 
 int rfe::Monitor::GetWidth() const

@@ -4,11 +4,20 @@
 void rfe::Scene::AddEntity(std::shared_ptr<Entity> entity)
 {
 	entities.emplace(entity);
+	if (loaded)
+	{
+		entity->Load();
+		entity->Start();
+	}
 }
 
 void rfe::Scene::RemoveEntity(std::shared_ptr<Entity> entity)
 {
-	entities.erase(entity);
+	if (entities.contains(entity))
+	{
+		entities.erase(entity);
+		entity->Unload();
+	}
 }
 
 void rfe::Scene::ClearEntities()
@@ -39,6 +48,8 @@ void rfe::Scene::Load()
 	{
 		entity->Start();
 	}
+
+	loaded = true;
 }
 
 void rfe::Scene::Unload()

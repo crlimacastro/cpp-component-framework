@@ -47,11 +47,10 @@ void rfe::Component::Start()
 	{
 		return;
 	}
-
-	started = true;
-
 	OnStart();
 	OnEnable();
+
+	started = true;
 }
 
 void rfe::Component::Update()

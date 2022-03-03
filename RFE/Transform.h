@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Component.h"
-#include "Vector3f.h"
+#include "Vector3D.h"
 #include "Quaternion.h"
 
 namespace rfe
@@ -9,8 +9,8 @@ namespace rfe
     class RFE_API Transform : public Component
     {
     public:
-        Vector3f position = Vector3f();
-        Quaternion rotation = Quaternion();
-        Vector3f scale = Vector3f();
+        Vector3D<float> position;
+        Quaternion<float> rotation;
+        Vector3D<float> scale;
     };
 }

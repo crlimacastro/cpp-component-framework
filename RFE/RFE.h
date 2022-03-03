@@ -7,8 +7,8 @@
 #include "Log.h"
 
  // Core/Structs
-#include "Vector2f.h"
-#include "Vector3f.h"
+#include "Vector2D.h"
+#include "Vector3D.h"
 #include "Quaternion.h"
 
 // Core (independent)
@@ -18,6 +18,7 @@
 #include "Clipboard.h"
 #include "Cursor.h"
 #include "Monitor.h"
+#include "Window.h"
 
 // ECS
 #include "Component.h"
@@ -34,6 +35,5 @@
 #include "CameraPrefab.h"
 
 // Core (dependent)
-#include "Window.h"
 #include "ApplicationSettings.h"
 #include "Application.h"

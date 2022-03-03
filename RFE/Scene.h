@@ -28,6 +28,8 @@ namespace rfe
     private:
         std::unordered_set<std::shared_ptr<Entity>> entities;
 
+        bool loaded = false;
+
         void Update();
         void Load();
         void Unload();

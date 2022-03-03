@@ -14,6 +14,12 @@ protected:
     void OnStart() override
     {
         GetSettings()->SetForceStopKey(KEY_ESCAPE);
+        GetSettings()->TargetFPS(60);
         rfe::SceneManager::LoadScene<TestScene>();
+    }
+
+    void OnUpdate() override
+    {
+
     }
 };

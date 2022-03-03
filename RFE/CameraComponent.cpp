@@ -17,8 +17,8 @@ void rfe::CameraComponent::OnUpdate()
 {
     //UpdateCamera(&camera);
     BeginMode3D(camera);
-    DrawCube(Vector3{ 0, 0, 0 }, 2.0f, 2.0f, 2.0f, RED);
-    DrawCubeWires(Vector3{ 0, 0, 0 }, 2.0f, 2.0f, 2.0f, MAROON);
+    //DrawCube(Vector3{ 0, 0, 0 }, 2.0f, 2.0f, 2.0f, RED);
+    //DrawCubeWires(Vector3{ 0, 0, 0 }, 2.0f, 2.0f, 2.0f, MAROON);
     DrawGrid(10, 1.0f);
     EndMode3D();
 }

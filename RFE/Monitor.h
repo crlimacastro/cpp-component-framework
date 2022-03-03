@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Vector2f.h"
+#include "Vector2D.h"
 
 namespace rfe
 {
@@ -8,7 +8,7 @@ namespace rfe
     {
     public:
         static std::shared_ptr<Monitor> Get(int monitor = 0);
-        Vector2f GetPosition() const;
+        Vector2D<float> GetPosition() const;
         int GetWidth() const;
         int GetHeight() const;
         int GetPhysicalWidth() const;

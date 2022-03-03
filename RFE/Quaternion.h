@@ -2,14 +2,15 @@
 
 namespace rfe
 {
-    struct RFE_API Quaternion
+    template <typename T>
+    struct Quaternion
     {
-        float x;
-        float y;
-        float z;
-        float w;
+        T x;
+        T y;
+        T z;
+        T w;
 
         Quaternion() = default;
-        Quaternion(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+        Quaternion(T x, T y, T z, T w) : x(x), y(y), z(z), w(w) {}
     };
 }

@@ -48,16 +48,13 @@
     <ClInclude Include="Quaternion.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2f.h">
+    <ClInclude Include="Vector2D.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3f.h">
+    <ClInclude Include="Vector3D.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
     <ClInclude Include="Event.h">
-      <Filter>src\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
       <Filter>src\Core</Filter>
     </ClInclude>
     <ClInclude Include="Application.h">
@@ -90,6 +87,9 @@
     <ClInclude Include="ApplicationSettings.h">
       <Filter>src\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>src\Core\Static</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -100,9 +100,6 @@
     </ClCompile>
     <ClCompile Include="Monitor.cpp">
       <Filter>src\Core\Static</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>src\Core</Filter>
@@ -134,17 +131,11 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>src\Core\Static</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3f.cpp">
-      <Filter>src\Core\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2f.cpp">
-      <Filter>src\Core\Structs</Filter>
-    </ClCompile>
-    <ClCompile Include="Quaternion.cpp">
-      <Filter>src\Core\Structs</Filter>
-    </ClCompile>
     <ClCompile Include="ApplicationSettings.cpp">
       <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>src\Core\Static</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

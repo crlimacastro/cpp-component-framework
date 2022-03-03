@@ -15,7 +15,7 @@ void rfe::Application::Settings::SetClearColor(const Color& value)
 
 int rfe::Application::Settings::GetTargetFPS() const
 {
-	if (vsync)
+	if (IsWindowState(FLAG_VSYNC_HINT))
 	{
 		return Window::GetMonitor()->GetRefreshRate();
 	}
@@ -27,7 +27,7 @@ void rfe::Application::Settings::TargetFPS(int value)
 {
 	targetFPS = value;
 
-	if (!vsync)
+	if (!IsWindowState(FLAG_VSYNC_HINT))
 	{
 		SetTargetFPS(value);
 	}
@@ -35,18 +35,19 @@ void rfe::Application::Settings::TargetFPS(int value)
 
 bool rfe::Application::Settings::HasVsync() const
 {
-	return vsync;
+	return IsWindowState(FLAG_VSYNC_HINT);
 }
 
 void rfe::Application::Settings::SetVsync(bool value)
 {
-	vsync = value;
-	if (vsync)
+	if (value)
 	{
+		SetWindowState(FLAG_VSYNC_HINT);
 		SetTargetFPS(Window::GetMonitor()->GetRefreshRate());
 	}
 	else
 	{
+		ClearWindowState(FLAG_VSYNC_HINT);
 		SetTargetFPS(targetFPS);
 	}
 }

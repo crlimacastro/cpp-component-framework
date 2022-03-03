@@ -101,21 +101,6 @@ void rfe::Window::Restore()
     RestoreWindow();
 }
 
-bool rfe::Window::IsState(unsigned int flag)
-{
-    return IsWindowState(flag);
-}
-
-void rfe::Window::SetState(unsigned int flags)
-{
-    SetWindowState(flags);
-}
-
-void rfe::Window::ClearState(unsigned int flags)
-{
-    ClearWindowState(flags);
-}
-
 const std::shared_ptr<Image> rfe::Window::GetIcon()
 {
     return icon;
@@ -138,13 +123,13 @@ void rfe::Window::SetTitle(const char* value)
     SetWindowTitle(value);
 }
 
-rfe::Vector2f rfe::Window::GetPosition()
+rfe::Vector2D<float> rfe::Window::GetPosition()
 {
     Vector2 position = GetWindowPosition();
-    return Vector2f{position.x, position.y};
+    return Vector2D<float>{position.x, position.y};
 }
 
-void rfe::Window::SetPosition(const Vector2f& value)
+void rfe::Window::SetPosition(const Vector2D<int>& value)
 {
     SetWindowPosition(value.x, value.y);
 }
@@ -233,8 +218,8 @@ void rfe::Window::SetMonitor(int value)
     SetWindowMonitor(value);
 }
 
-rfe::Vector2f rfe::Window::GetScaleDPI()
+rfe::Vector2D<float> rfe::Window::GetScaleDPI()
 {
-    Vector2 scaleDPI = GetWindowPosition();
-    return Vector2f{scaleDPI.x, scaleDPI.y};
+    Vector2 scaleDPI = GetWindowScaleDPI();
+    return Vector2D<float>{scaleDPI.x, scaleDPI.y};
 }

@@ -20,12 +20,15 @@ namespace rfe
 			currentScene->Load();
 		}
 
+		static void UnloadScene();
+
 	private:
-		SceneManager() = default;
+		SceneManager() = delete;
 		SceneManager(const SceneManager& other) = delete;
 		SceneManager(SceneManager&& other) = delete ;
 		SceneManager& operator=(const SceneManager& other) = delete;
 		SceneManager& operator=(SceneManager&& other) noexcept = delete;
+		~SceneManager() = delete;
 
 		static std::shared_ptr<Scene> currentScene;
 	};
