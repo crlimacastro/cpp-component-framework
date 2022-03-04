@@ -1,0 +1,3 @@
+[submodule "RFE/vendor"]
+	path = RFE/vendor
+	url = https://github.com/YclepticStudios/gmath.git
