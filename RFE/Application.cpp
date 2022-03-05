@@ -1,50 +1,52 @@
 #include "pch.h"
-#include "Application.h"
+#include "Application.hpp"
 
-#include "Window.h"
-#include "SceneManager.h"
-#include "ApplicationSettings.h"
-#include "Log.h"
+#include "Window.hpp"
+#include "Monitor.hpp"
+#include "Camera.hpp"
+#include "SceneManager.hpp"
+#include "Log.hpp"
 
-rfe::Application* rfe::Application::runningApp = nullptr;
+rfe::Application* rfe::Application::activeApp = nullptr;
 
 rfe::Application::~Application()
 {
 	RFE_LOG("Heap state on ~Application()");
-	_CrtMemDumpAllObjectsSince(&checkpointPostRaylibInitWindow);
+	_CrtMemDumpAllObjectsSince(&memCheckpointPostRaylibInitWindow);
 }
 
-rfe::Application* rfe::Application::GetRunningApp()
+rfe::Application* rfe::Application::GetActive()
 {
-	return runningApp;
+	return activeApp;
 }
 
-std::shared_ptr<rfe::Application::Settings> rfe::Application::GetSettings() const
+int rfe::Application::GetCurrentFPS()
 {
-	return settings;
+	return GetFPS();
 }
 
 void rfe::Application::Start()
 {
-	runningApp = this;
+	if (isStarted)
+		return;
+
+	isStarted = true;
+	isRunning = true;
+	activeApp = this;
 
 	Window::Open();
-
 	InitMemLeakDetection();
-
-	// Init Settings
-	SetTargetFPS(settings->GetTargetFPS());
-	settings->SetVsync(settings->HasVsync());
-	SetExitKey(settings->GetForceStopKey());
+	InitSettings();
 
 	OnStart();
-
 	// Start Update Loop
-	while (!Window::ShouldClose())
+	while (isRunning)
 	{
+		if (Window::ShouldClose())
+			break;
+
 		Update();
 	}
-
 	// Call Stop on Window close
 	Stop();
 }
@@ -52,23 +54,49 @@ void rfe::Application::Start()
 void rfe::Application::Update()
 {
 	BeginDrawing();
-	ClearBackground(settings->GetClearColor());
+	ClearBackground(Settings.GetClearColor());
 
-	OnUpdate();
-	if (SceneManager::GetCurrentScene())
+	if (Cameras.GetActive())
 	{
-		SceneManager::GetCurrentScene()->Update();
+		Cameras.GetActive()->BeginDrawing();
 	}
 
+	OnUpdate();
+
+	if (SceneManager.GetCurrentScene())
+	{
+		SceneManager.GetCurrentScene()->Update();
+	}
+
+	if (Cameras.GetActive())
+	{
+		Cameras.GetActive()->EndDrawing();
+	}
 	EndDrawing();
 }
 
 void rfe::Application::Stop()
 {
+	if (isStopped)
+		return;
+
+	isStopped = true;
+
 	OnStop();
-	SceneManager::UnloadScene();
+
+	SceneManager.UnloadScene();
+
 	Window::Close();
-	runningApp = nullptr;
+
+	isRunning = false;
+	activeApp = nullptr;
+}
+
+void rfe::Application::InitSettings()
+{
+	Settings.TargetFPS(Settings.GetTargetFPS());
+	Settings.SetVsync(Settings.HasVsync());
+	Settings.SetForceStopKey(Settings.GetForceStopKey());
 }
 
 void rfe::Application::InitMemLeakDetection()
@@ -79,5 +107,5 @@ void rfe::Application::InitMemLeakDetection()
 	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDERR);
 	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDERR);
 	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
-	_CrtMemCheckpoint(&checkpointPostRaylibInitWindow);
+	_CrtMemCheckpoint(&memCheckpointPostRaylibInitWindow);
 }

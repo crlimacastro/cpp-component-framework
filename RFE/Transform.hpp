@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Component.h"
-#include "Vector3D.h"
-#include "Quaternion.h"
+#include "Component.hpp"
+
+#include "Vector3D.hpp"
+#include "Quaternion.hpp""
 
 namespace rfe
 {
@@ -11,6 +12,6 @@ namespace rfe
     public:
         Vector3D<float> position;
         Quaternion<float> rotation;
-        Vector3D<float> scale;
+        Vector3D<float> scale{1, 1, 1};
     };
 }

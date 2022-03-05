@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Clipboard.h"
+#include "Clipboard.hpp"
 
 const char* rfe::Clipboard::GetText()
 {

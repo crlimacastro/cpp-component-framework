@@ -8,10 +8,12 @@ public:
 		auto entity = rfe::Entity::Create();
 		entity->SetName("FPS Counter");
 		auto transform = entity->AddComponent<rfe::Transform>();
-		transform->position = rfe::Vector3D<float>(20.0f, 20.0f, 0.0f);
+		transform->position = { 20, 20, 0 };
 		auto drawer = entity->AddComponent<FPSDrawer>();
+		drawer->transform = transform;
 		drawer->SetEnabled(false);
-		entity->AddComponent<FPSToggler>();
+		auto toggler = entity->AddComponent<FPSToggler>();
+		toggler->fpsDrawer = drawer;
 		return entity;
 	}
 };

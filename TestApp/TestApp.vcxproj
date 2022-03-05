@@ -176,9 +176,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CallbacksTesterPrefab.h" />
     <ClInclude Include="CallbacksTesterToggler.h" />
     <ClInclude Include="Components.h" />
-    <ClInclude Include="CubeDrawer.h" />
     <ClInclude Include="FPSCounterPrefab.h" />
     <ClInclude Include="FPSDrawer.h" />
     <ClInclude Include="FPSToggler.h" />

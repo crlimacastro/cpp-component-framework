@@ -23,6 +23,7 @@
 #include <memory>
 #include <vector>
 #include <unordered_set>
+#include <stack>
 #include <queue>
 #include <ranges>
 #include <iterator>

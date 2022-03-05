@@ -1,16 +1,17 @@
 #include "pch.h"
-#include "CameraPrefab.h"
+#include "CameraPrefab.hpp"
 
-#include "Entity.h"
-#include "Prefab.h"
-#include "Transform.h"
-#include "CameraComponent.h"
+#include "Entity.hpp"
+#include "Transform.hpp"
+#include "CameraComponent.hpp"
 
 std::shared_ptr<rfe::Entity> rfe::CameraPrefab::Create() const
 {
 	auto entity = Entity::Create();
 	entity->SetName("Camera");
-	entity->AddComponent<rfe::Transform>();
-	entity->AddComponent<rfe::CameraComponent>();
+	auto transform = entity->AddComponent<Transform>();
+	transform->position = { 0, 0, -10 };
+	auto camera = entity->AddComponent<CameraComponent>();
+	camera->transform = transform;
 	return entity;
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Prefab.h"
+#include "Prefab.hpp"
 
 namespace rfe
 {

@@ -1,24 +1,29 @@
 #include "pch.h"
-#include "CameraComponent.h"
+#include "CameraComponent.hpp"
 
-#include "Component.h"
+#include "Entity.hpp"
+#include "Application.hpp"
 
 void rfe::CameraComponent::OnLoad()
 {
-    camera.position = Vector3{ 10.0f, 10.0f, 8.0f };
-    camera.target = Vector3{ 0.0f, 0.0f, 0.0f };
-    camera.up = Vector3{ 0.0f, 1.0f, 0.0f };
-    camera.fovy = 60.0f;
-    camera.projection = CAMERA_PERSPECTIVE;
-    //SetCameraMode(camera, CAMERA_ORBITAL);
+    if (!transform)
+    {
+        transform = GetEntity()->GetComponent<rfe::Transform>();
+    }
+}
+
+void rfe::CameraComponent::OnEnable()
+{
+    Application::GetActive()->Cameras.Push(camera);
+}
+
+void rfe::CameraComponent::OnDisable()
+{
+    Application::GetActive()->Cameras.Remove(camera);
 }
 
 void rfe::CameraComponent::OnUpdate()
 {
-    //UpdateCamera(&camera);
-    BeginMode3D(camera);
-    //DrawCube(Vector3{ 0, 0, 0 }, 2.0f, 2.0f, 2.0f, RED);
-    //DrawCubeWires(Vector3{ 0, 0, 0 }, 2.0f, 2.0f, 2.0f, MAROON);
-    DrawGrid(10, 1.0f);
-    EndMode3D();
+    camera.SetPosition(transform->position);
+    camera.Update();
 }

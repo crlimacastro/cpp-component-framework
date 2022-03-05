@@ -53,8 +53,8 @@
     <ClInclude Include="FPSCounterPrefab.h">
       <Filter>src\Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="CubeDrawer.h">
-      <Filter>src\Components</Filter>
+    <ClInclude Include="CallbacksTesterPrefab.h">
+      <Filter>src\Prefabs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

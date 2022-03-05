@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Log.h"
+#include "Log.hpp"
 
 #include <iostream>
 

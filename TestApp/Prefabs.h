@@ -1,5 +1,6 @@
 #pragma once
 
-#include "Prefab.h"
+#include "Prefab.hpp"
 
 #include "FPSCounterPrefab.h"
+#include "CallbacksTesterPrefab.h"

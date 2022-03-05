@@ -1,5 +1,8 @@
 #include "pch.h"
-#include "Window.h"
+#include "Window.hpp"
+
+#include "Vector2D.hpp"
+#include "Monitor.hpp"
 
 std::shared_ptr<Image> icon;
 const char* title = "Raylib Fae Engine App";
@@ -8,9 +11,9 @@ rfe::Window::WindowSize minSize{ 640, 480 };
 
 void rfe::Window::Open()
 {
-    // If there is a window already open close it
+    // Cannot open the window once it has already been opened once
     if (GetWindowHandle())
-        CloseWindow();
+        return;
 
     InitWindow(size.width, size.height, title);
 }
@@ -22,7 +25,7 @@ bool rfe::Window::ShouldClose()
 
 void rfe::Window::Close()
 {
-    // If there is no window or it has already been closed return
+    // If there is no window return
     if (!GetWindowHandle())
         return;
 
@@ -32,11 +35,6 @@ void rfe::Window::Close()
 bool rfe::Window::IsOpen()
 {
     return GetWindowHandle();
-}
-
-bool rfe::Window::IsReady()
-{
-    return IsWindowReady();
 }
 
 bool rfe::Window::IsHidden()
@@ -106,10 +104,10 @@ const std::shared_ptr<Image> rfe::Window::GetIcon()
     return icon;
 }
 
-void rfe::Window::SetIcon(const Image& value)
+void rfe::Window::SetIcon(const std::shared_ptr<Image>& value)
 {
-    icon = std::make_shared<Image>(value);
-    SetWindowIcon(value);
+    icon = value;
+    value ? SetWindowIcon(*value) : SetWindowIcon(Image());
 }
 
 const char* rfe::Window::GetTitle()
@@ -126,7 +124,7 @@ void rfe::Window::SetTitle(const char* value)
 rfe::Vector2D<float> rfe::Window::GetPosition()
 {
     Vector2 position = GetWindowPosition();
-    return Vector2D<float>{position.x, position.y};
+    return {position.x, position.y};
 }
 
 void rfe::Window::SetPosition(const Vector2D<int>& value)
@@ -215,6 +213,7 @@ std::shared_ptr<rfe::Monitor> rfe::Window::GetMonitor()
 
 void rfe::Window::SetMonitor(int value)
 {
+    if (value < 0 || value >= GetMonitorCount()) return;
     SetWindowMonitor(value);
 }
 

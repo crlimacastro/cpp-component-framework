@@ -1,13 +1,9 @@
 #pragma once
-#include "Application.h"
-
 namespace rfe
 {
-	// Separation of Settings from Application class
-	class RFE_API Application::Settings {
+	class RFE_API ApplicationSettings
+	{
 	public:
-		Application::Settings() = default;
-
 		const Color& GetClearColor() const;
 		void SetClearColor(const Color& value);
 		int GetTargetFPS() const;

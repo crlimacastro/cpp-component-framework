@@ -1,19 +1,20 @@
 #include "pch.h"
-#include "ApplicationSettings.h"
+#include "ApplicationSettings.hpp"
 
-#include "Window.h"
+#include "Window.hpp"
+#include "Monitor.hpp"
 
-const Color& rfe::Application::Settings::GetClearColor() const
+const Color& rfe::ApplicationSettings::GetClearColor() const
 {
 	return clearColor;
 }
 
-void rfe::Application::Settings::SetClearColor(const Color& value)
+void rfe::ApplicationSettings::SetClearColor(const Color& value)
 {
 	clearColor = value;
 }
 
-int rfe::Application::Settings::GetTargetFPS() const
+int rfe::ApplicationSettings::GetTargetFPS() const
 {
 	if (IsWindowState(FLAG_VSYNC_HINT))
 	{
@@ -23,7 +24,7 @@ int rfe::Application::Settings::GetTargetFPS() const
 	return targetFPS;
 }
 
-void rfe::Application::Settings::TargetFPS(int value)
+void rfe::ApplicationSettings::TargetFPS(int value)
 {
 	targetFPS = value;
 
@@ -33,17 +34,17 @@ void rfe::Application::Settings::TargetFPS(int value)
 	}
 }
 
-bool rfe::Application::Settings::HasVsync() const
+bool rfe::ApplicationSettings::HasVsync() const
 {
 	return IsWindowState(FLAG_VSYNC_HINT);
 }
 
-void rfe::Application::Settings::SetVsync(bool value)
+void rfe::ApplicationSettings::SetVsync(bool value)
 {
 	if (value)
 	{
 		SetWindowState(FLAG_VSYNC_HINT);
-		SetTargetFPS(Window::GetMonitor()->GetRefreshRate());
+		SetTargetFPS(rfe::Window::GetMonitor()->GetRefreshRate());
 	}
 	else
 	{
@@ -52,12 +53,12 @@ void rfe::Application::Settings::SetVsync(bool value)
 	}
 }
 
-int rfe::Application::Settings::GetForceStopKey() const
+int rfe::ApplicationSettings::GetForceStopKey() const
 {
 	return forceStopKey;
 }
 
-void rfe::Application::Settings::SetForceStopKey(int value)
+void rfe::ApplicationSettings::SetForceStopKey(int value)
 {
 	forceStopKey = value;
 	SetExitKey(value);

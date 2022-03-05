@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Scene.h"
+#include "Scene.hpp"
 
 void rfe::Scene::AddEntity(std::shared_ptr<Entity> entity)
 {

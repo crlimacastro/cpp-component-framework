@@ -1,7 +1,5 @@
 #include "pch.h"
-#include "SceneManager.h"
-
-std::shared_ptr<rfe::Scene> rfe::SceneManager::currentScene = nullptr;
+#include "SceneManager.hpp"
 
 std::shared_ptr<rfe::Scene> rfe::SceneManager::GetCurrentScene()
 {

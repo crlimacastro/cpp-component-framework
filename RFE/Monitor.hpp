@@ -1,9 +1,12 @@
 #pragma once
 
-#include "Vector2D.h"
-
 namespace rfe
 {
+    template <typename T>
+    struct Vector2D;
+
+    // Private constructor. Get monitor with public static Monitor::Get(int monitor = 0).
+    // Will return nullptr if not a valid monitor number.
     class RFE_API Monitor
     {
     public:

@@ -4,7 +4,7 @@ class KeyboardController : public rfe::Component
 {
 public:
 	std::shared_ptr<rfe::Transform> transform;
-	float speed = 0.1f;
+	float speed = 10.0f;
 protected:
 	void OnLoad() override
 	{
@@ -15,30 +15,26 @@ protected:
 	}
 	void OnUpdate() override
 	{
+		auto newPosition = transform->position;
+
 		if (IsKeyDown(KEY_W))
 		{
-			transform->position.x -= speed;
+			newPosition.y += speed * rfe::Time::GetDeltaTime();
 		}
 		if (IsKeyDown(KEY_A))
 		{
-			transform->position.z += speed;
+			newPosition.x -= speed * rfe::Time::GetDeltaTime();
 		}
 		if (IsKeyDown(KEY_S))
 		{
-			transform->position.x += speed;
+			newPosition.y -= speed * rfe::Time::GetDeltaTime();
 		}
 		if (IsKeyDown(KEY_D))
 		{
-			transform->position.z -= speed;
+			newPosition.x += speed * rfe::Time::GetDeltaTime();
 		}
-		if (IsKeyDown(KEY_LEFT_SHIFT))
-		{
-			transform->position.y += speed;
-		}
-		if (IsKeyDown(KEY_LEFT_CONTROL))
-		{
-			transform->position.y -= speed;
-		}
+
+		transform->position = newPosition;
 	}
 };
 

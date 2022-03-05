@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Cursor.h"
+#include "Cursor.hpp"
 
 void rfe::Cursor::Show()
 {

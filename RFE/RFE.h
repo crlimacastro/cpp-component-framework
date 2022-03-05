@@ -3,37 +3,36 @@
 
 // Raylib Fae Engine
 
-// Debug
-#include "Log.h"
+// Core
+#include "Log.hpp"
+#include "Event.hpp"
+#include "Camera.hpp"
 
  // Core/Structs
-#include "Vector2D.h"
-#include "Vector3D.h"
-#include "Quaternion.h"
-
-// Core (independent)
-#include "Event.h"
+#include "VectorND.hpp"
+#include "Vector2D.hpp"
+#include "Vector3D.hpp"
+#include "Quaternion.hpp"
 
 // Core/Static
-#include "Clipboard.h"
-#include "Cursor.h"
-#include "Monitor.h"
-#include "Window.h"
+#include "Time.hpp"
+#include "Clipboard.hpp"
+#include "Cursor.hpp"
+#include "Monitor.hpp"
+#include "Window.hpp"
 
 // ECS
-#include "Component.h"
-#include "Entity.h"
-#include "Prefab.h"
-#include "Scene.h"
-#include "SceneManager.h"
+#include "Component.hpp"
+#include "Entity.hpp"
+#include "Prefab.hpp"
+#include "Scene.hpp"
 
 // ECS/Components
-#include "Transform.h"
-#include "CameraComponent.h"
+#include "Transform.hpp"
+#include "CameraComponent.hpp"
 
 // ECS/Prefabs
-#include "CameraPrefab.h"
+#include "CameraPrefab.hpp"
 
-// Core (dependent)
-#include "ApplicationSettings.h"
-#include "Application.h"
+// App
+#include "Application.hpp"

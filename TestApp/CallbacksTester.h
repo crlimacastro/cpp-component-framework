@@ -25,7 +25,7 @@ protected:
 
 	void OnUpdate() override
 	{
-		 //RFE_LOG(GetEntity()->GetName() + " called OnUpdate()");
+		 RFE_LOG(GetEntity()->GetName() + " called OnUpdate()");
 	}
 
 	void OnUnload() override

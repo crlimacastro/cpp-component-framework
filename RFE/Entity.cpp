@@ -1,8 +1,9 @@
 #include "pch.h"
-#include "Entity.h"
+#include "Entity.hpp"
 
-#include "Component.h"
-#include "SceneManager.h"
+#include "Component.hpp"
+#include "SceneManager.hpp"
+#include "Application.hpp"
 
 std::shared_ptr<rfe::Entity> rfe::Entity::Create()
 {
@@ -110,7 +111,7 @@ void rfe::Entity::ClearChildren()
 
 void rfe::Entity::Destroy(std::shared_ptr<Entity> entity)
 {
-	SceneManager::GetCurrentScene()->RemoveEntity(entity);
+	Application::GetActive()->SceneManager.GetCurrentScene()->RemoveEntity(entity);
 }
 
 void rfe::Entity::Load()
