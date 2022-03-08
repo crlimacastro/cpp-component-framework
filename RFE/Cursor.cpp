@@ -35,3 +35,8 @@ bool rfe::Cursor::IsOnScreen()
 {
     return IsCursorOnScreen();
 }
+
+void rfe::Cursor::Set(Type type)
+{
+    SetMouseCursor((int)type);
+}

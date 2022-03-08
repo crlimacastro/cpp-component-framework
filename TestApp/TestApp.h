@@ -9,40 +9,54 @@
 class TestApp : public rfe::Application
 {
 protected:
-    void OnStart() override
-    {
-        Settings.SetForceStopKey(KEY_ESCAPE);
-		Settings.TargetFPS(120);
-        SceneManager.LoadScene<TestScene>();
-    }
+	void OnStart() override
+	{
+		settings.SetForceStopKey(KEY_ESCAPE);
+		sceneManager.LoadScene<TestScene>();
+	}
 
-    rfe::Vector3D<float> cubePosition = {0, 0, 0};
-    float speed = 10;
+	rfe::Vector3D<float> cubePosition = { 0, 0, 0 };
+	float speed = 10;
 
-    void OnUpdate() override
-    {
-		auto newPosition = cubePosition;
+	void OnUpdate() override
+	{
+		rfe::Vector3D<float> direction;
 
 		if (IsKeyDown(KEY_W))
 		{
-			newPosition.y += speed * rfe::Time::GetDeltaTime();
+			direction.y += 1;
 		}
 		if (IsKeyDown(KEY_A))
 		{
-			newPosition.x -= speed * rfe::Time::GetDeltaTime();
+			direction.x -= 1;
 		}
 		if (IsKeyDown(KEY_S))
 		{
-			newPosition.y -= speed * rfe::Time::GetDeltaTime();
+			direction.y -= 1;
 		}
 		if (IsKeyDown(KEY_D))
 		{
-			newPosition.x += speed * rfe::Time::GetDeltaTime();
+			direction.x += 1;
 		}
 
-		cubePosition = newPosition;
-        DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
-        DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
-        DrawGrid(10, 1.0f);
-    }
+		direction.Normalize();
+
+		cubePosition += direction * speed * GetFrameTime();
+
+		fnBuffer3D.Push([&]() {
+			DrawCube(cubePosition, 2.0f, 2.0f, 2.0f, RED);
+			DrawCubeWires(cubePosition, 2.0f, 2.0f, 2.0f, MAROON);
+			DrawGrid(10, 1.0f);
+			});
+
+		if (IsKeyPressed(KEY_SPACE))
+		{
+
+		}
+
+		if (IsKeyPressed(KEY_TAB))
+		{
+
+		}
+	}
 };

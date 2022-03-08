@@ -13,7 +13,7 @@ namespace rfe
     {
     public:
         friend class Application;
-        friend class SceneManager;
+        friend class sceneManager;
     public:
         Scene() = default;
     public:

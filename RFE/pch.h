@@ -11,9 +11,9 @@
 #include "framework.h"
 
 // Memory Leak Detection
+#ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
-#ifdef _DEBUG
 #define DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #define new DEBUG_NEW
 #endif
@@ -23,11 +23,7 @@
 #include <memory>
 #include <vector>
 #include <unordered_set>
-#include <stack>
 #include <queue>
-#include <ranges>
-#include <iterator>
-#include <algorithm>
 #include <functional>
 
 // Raylib

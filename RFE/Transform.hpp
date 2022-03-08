@@ -3,7 +3,7 @@
 #include "Component.hpp"
 
 #include "Vector3D.hpp"
-#include "Quaternion.hpp""
+#include "Quaternion4D.hpp""
 
 namespace rfe
 {
@@ -11,7 +11,7 @@ namespace rfe
     {
     public:
         Vector3D<float> position;
-        Quaternion<float> rotation;
+        Quaternion4D<float> rotation;
         Vector3D<float> scale{1, 1, 1};
     };
 }

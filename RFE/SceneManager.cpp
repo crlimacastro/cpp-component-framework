@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "SceneManager.hpp"
 
-std::shared_ptr<rfe::Scene> rfe::SceneManager::GetCurrentScene()
+std::shared_ptr<rfe::Scene> rfe::sceneManager::GetCurrentScene()
 {
     return currentScene;
 }
 
-void rfe::SceneManager::UnloadScene()
+void rfe::sceneManager::UnloadScene()
 {
 	if (currentScene)
 	{

@@ -26,6 +26,6 @@ namespace rfe
 
     namespace Monitors
     {
-        RFE_API const std::shared_ptr<std::vector<std::shared_ptr<Monitor>>> GetMonitors();
+        RFE_API std::shared_ptr<std::vector<std::shared_ptr<Monitor>>> GetMonitors();
     }
 }

@@ -42,9 +42,34 @@ bool rfe::Window::IsHidden()
     return IsWindowHidden();
 }
 
+void rfe::Window::SetIsHidden(bool value)
+{
+    value ? SetWindowState(FLAG_WINDOW_HIDDEN) : ClearWindowState(FLAG_WINDOW_HIDDEN);
+}
+
+bool rfe::Window::IsDecorated()
+{
+    return !IsWindowState(FLAG_WINDOW_UNDECORATED);
+}
+
+void rfe::Window::SetIsDecorated(bool value)
+{
+    value ? ClearWindowState(FLAG_WINDOW_UNDECORATED) : SetWindowState(FLAG_WINDOW_UNDECORATED);
+}
+
 bool rfe::Window::IsMinimized()
 {
     return IsWindowMinimized();
+}
+
+void rfe::Window::SetIsMinimized(bool value)
+{
+    value ? SetWindowState(FLAG_WINDOW_MINIMIZED) : ClearWindowState(FLAG_WINDOW_MINIMIZED);
+}
+
+void rfe::Window::Minimize()
+{
+    MinimizeWindow();
 }
 
 bool rfe::Window::IsMaximized()
@@ -52,9 +77,44 @@ bool rfe::Window::IsMaximized()
     return IsWindowMaximized();
 }
 
+void rfe::Window::SetIsMaximized(bool value)
+{
+    value ? SetWindowState(FLAG_WINDOW_MAXIMIZED) : ClearWindowState(FLAG_WINDOW_MAXIMIZED);
+}
+
+void rfe::Window::Maximize()
+{
+    MaximizeWindow();
+}
+
 bool rfe::Window::IsFocused()
 {
     return IsWindowFocused();
+}
+
+void rfe::Window::SetIsFocused(bool value)
+{
+    value ? ClearWindowState(FLAG_WINDOW_UNFOCUSED) : SetWindowState(FLAG_WINDOW_UNFOCUSED);
+}
+
+bool rfe::Window::IsAlwaysOnTop()
+{
+    return IsWindowState(FLAG_WINDOW_TOPMOST);
+}
+
+RFE_API void rfe::Window::SetIsAlwaysOnTop(bool value)
+{
+    value ? SetWindowState(FLAG_WINDOW_TOPMOST) : ClearWindowState(FLAG_WINDOW_TOPMOST);
+}
+
+bool rfe::Window::IsResizable()
+{
+    return IsWindowState(FLAG_WINDOW_RESIZABLE);
+}
+
+void rfe::Window::SetIsResizable(bool value)
+{
+    value ? SetWindowState(FLAG_WINDOW_RESIZABLE) : ClearWindowState(FLAG_WINDOW_RESIZABLE);
 }
 
 bool rfe::Window::IsResized()
@@ -82,16 +142,6 @@ void rfe::Window::SetFullScreen(bool value)
 void rfe::Window::ToggleFullScreen()
 {
     ToggleFullscreen();
-}
-
-void rfe::Window::Maximize()
-{
-    MaximizeWindow();
-}
-
-void rfe::Window::Minimize()
-{
-    MinimizeWindow();
 }
 
 void rfe::Window::Restore()

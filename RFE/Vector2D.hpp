@@ -6,16 +6,15 @@ namespace rfe
     template <typename T>
     struct Vector2D : VectorND<2, T>
     {
-		union {
-			T data[2];
-			struct {
-				T x;
-				T y;
-			};
-		};
+		T& x = VectorND<2, T>::data[0];
+		T& y = VectorND<2, T>::data[1];
 
 		Vector2D() = default;
 		Vector2D(T x, T y) : x(x), y(y) {}
+
+		static Vector2D From(Vector2 other) {
+			return { other.x, other.y };
+		}
 
 		static Vector2D Up()
 		{

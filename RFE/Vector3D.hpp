@@ -6,17 +6,28 @@ namespace rfe
 	template <typename T>
 	struct Vector3D : VectorND<3, T>
 	{
-		union {
-			T data[3];
-			struct {
-				T x;
-				T y;
-				T z;
-			};
-		};
+		T& x = VectorND<3, T>::data[0];
+		T& y = VectorND<3, T>::data[1];
+		T& z = VectorND<3, T>::data[2];
 
 		Vector3D() = default;
-		Vector3D(T x, T y, T z) : x(x), y(y), z(z) {}
+		Vector3D(T x, T y, T z)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+		}
+		Vector3D& operator=(const Vector3D& other)
+		{
+			x = other.x;
+			y = other.y;
+			z = other.z;
+			return *this;
+		}
+
+		static Vector3D From(Vector3 other) {
+			return { other.x, other.y, other.z };
+		}
 
 		static Vector3D Up()
 		{

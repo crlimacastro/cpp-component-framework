@@ -178,17 +178,26 @@
     <ClInclude Include="Cursor.hpp" />
     <ClInclude Include="Entity.hpp" />
     <ClInclude Include="Event.hpp" />
+    <ClInclude Include="File.hpp" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="FunctionBuffer.hpp" />
+    <ClInclude Include="Gamepad.hpp" />
+    <ClInclude Include="Keyboard.hpp" />
     <ClInclude Include="Log.hpp" />
     <ClInclude Include="Monitor.hpp" />
+    <ClInclude Include="Mouse.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Prefab.hpp" />
-    <ClInclude Include="Quaternion.hpp" />
+    <ClInclude Include="Quaternion4D.hpp" />
+    <ClInclude Include="Random.hpp" />
     <ClInclude Include="RFE.h" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneManager.hpp" />
+    <ClInclude Include="Screenshot.hpp" />
     <ClInclude Include="Time.hpp" />
+    <ClInclude Include="Touch.hpp" />
     <ClInclude Include="Transform.hpp" />
+    <ClInclude Include="URL.hpp" />
     <ClInclude Include="VectorND.hpp" />
     <ClInclude Include="Vector2D.hpp" />
     <ClInclude Include="Vector3D.hpp" />
@@ -206,18 +215,27 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="FunctionBuffer.cpp" />
+    <ClCompile Include="Gamepad.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Monitor.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Screenshot.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Touch.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="URL.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

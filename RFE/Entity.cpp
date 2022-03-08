@@ -111,7 +111,7 @@ void rfe::Entity::ClearChildren()
 
 void rfe::Entity::Destroy(std::shared_ptr<Entity> entity)
 {
-	Application::GetActive()->SceneManager.GetCurrentScene()->RemoveEntity(entity);
+	Application::GetActive()->sceneManager.GetCurrentScene()->RemoveEntity(entity);
 }
 
 void rfe::Entity::Load()

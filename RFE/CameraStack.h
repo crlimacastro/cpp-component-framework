@@ -18,6 +18,6 @@ namespace rfe
 		void Remove(Camera& camera);
 	private:
 		std::unordered_set<rfe::Camera*> cameraSet;
-		std::vector<rfe::Camera*> Cameras;
+		std::vector<rfe::Camera*> cameras;
 	};
 }

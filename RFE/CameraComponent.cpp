@@ -14,16 +14,15 @@ void rfe::CameraComponent::OnLoad()
 
 void rfe::CameraComponent::OnEnable()
 {
-    Application::GetActive()->Cameras.Push(camera);
+    Application::GetActive()->cameras.Push(camera);
 }
 
 void rfe::CameraComponent::OnDisable()
 {
-    Application::GetActive()->Cameras.Remove(camera);
+    Application::GetActive()->cameras.Remove(camera);
 }
 
 void rfe::CameraComponent::OnUpdate()
 {
     camera.SetPosition(transform->position);
-    camera.Update();
 }

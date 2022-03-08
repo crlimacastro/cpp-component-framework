@@ -22,6 +22,9 @@
     <Filter Include="src\ECS\Prefabs">
       <UniqueIdentifier>{431ddc36-c786-47a3-a79d-79d39f864a4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core\Static\Input">
+      <UniqueIdentifier>{722406be-3ff2-4477-997a-fac7938a7dc8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -75,7 +78,7 @@
     <ClInclude Include="Window.hpp">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Quaternion.hpp">
+    <ClInclude Include="Quaternion4D.hpp">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.hpp">
@@ -100,6 +103,33 @@
       <Filter>src\Core</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.hpp">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.hpp">
+      <Filter>src\Core\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="Screenshot.hpp">
+      <Filter>src\Core\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="URL.hpp">
+      <Filter>src\Core\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="File.hpp">
+      <Filter>src\Core\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.hpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Gamepad.hpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.hpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Touch.hpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionBuffer.hpp">
       <Filter>src\Core</Filter>
     </ClInclude>
   </ItemGroup>
@@ -159,6 +189,33 @@
       <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>src\Core\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Screenshot.cpp">
+      <Filter>src\Core\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="URL.cpp">
+      <Filter>src\Core\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="File.cpp">
+      <Filter>src\Core\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Gamepad.cpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Touch.cpp">
+      <Filter>src\Core\Static\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionBuffer.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
   </ItemGroup>

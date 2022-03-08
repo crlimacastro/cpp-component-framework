@@ -11,7 +11,7 @@ rfe::Application* rfe::Application::activeApp = nullptr;
 
 rfe::Application::~Application()
 {
-	RFE_LOG("Heap state on ~Application()");
+	RFE_LOG_INFO("Heap state on ~Application()");
 	_CrtMemDumpAllObjectsSince(&memCheckpointPostRaylibInitWindow);
 }
 
@@ -54,25 +54,34 @@ void rfe::Application::Start()
 void rfe::Application::Update()
 {
 	BeginDrawing();
-	ClearBackground(Settings.GetClearColor());
+	ClearBackground(settings.GetClearColor());
 
-	if (Cameras.GetActive())
+	if (cameras.GetActive())
 	{
-		Cameras.GetActive()->BeginDrawing();
+		cameras.GetActive()->Update();
 	}
 
 	OnUpdate();
 
-	if (SceneManager.GetCurrentScene())
+	if (sceneManager.GetCurrentScene())
 	{
-		SceneManager.GetCurrentScene()->Update();
+		sceneManager.GetCurrentScene()->Update();
 	}
 
-	if (Cameras.GetActive())
+	if (cameras.GetActive())
 	{
-		Cameras.GetActive()->EndDrawing();
+		cameras.GetActive()->context3D.BeginDrawing();
+		fnBuffer3D.DumpInvoke();
+		cameras.GetActive()->context3D.EndDrawing();
+		cameras.GetActive()->context2D.BeginDrawing();
+		fnBuffer2D.DumpInvoke();
+		cameras.GetActive()->context2D.EndDrawing();
+		fnBufferScreen.DumpInvoke();
 	}
+
 	EndDrawing();
+	
+	fnBufferPostDraw.DumpInvoke();
 }
 
 void rfe::Application::Stop()
@@ -84,7 +93,7 @@ void rfe::Application::Stop()
 
 	OnStop();
 
-	SceneManager.UnloadScene();
+	sceneManager.UnloadScene();
 
 	Window::Close();
 
@@ -94,9 +103,9 @@ void rfe::Application::Stop()
 
 void rfe::Application::InitSettings()
 {
-	Settings.TargetFPS(Settings.GetTargetFPS());
-	Settings.SetVsync(Settings.HasVsync());
-	Settings.SetForceStopKey(Settings.GetForceStopKey());
+	settings.TargetFPS(settings.GetTargetFPS());
+	settings.SetVsync(settings.HasVsync());
+	settings.SetForceStopKey(settings.GetForceStopKey());
 }
 
 void rfe::Application::InitMemLeakDetection()

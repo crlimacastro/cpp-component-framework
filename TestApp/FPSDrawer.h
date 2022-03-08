@@ -14,7 +14,7 @@ protected:
 	}
 	void OnUpdate() override
 	{
-		DrawFPS((int)transform->position.x, (int)transform->position.y);
+		rfe::Application::GetActive()->fnBufferScreen.Push([&]() { DrawFPS((int)transform->position.x, (int)transform->position.y); });
 	}
 };
 

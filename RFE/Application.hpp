@@ -3,6 +3,7 @@
 #include "ApplicationSettings.hpp"
 #include "CameraStack.h"
 #include "SceneManager.hpp"
+#include "FunctionBuffer.hpp"
 
 namespace rfe
 {
@@ -18,9 +19,20 @@ namespace rfe
 		Application() = default;
 		~Application();
 		
-		ApplicationSettings Settings;
-		SceneManager SceneManager;
-		CameraStack Cameras;
+		ApplicationSettings settings;
+		sceneManager sceneManager;
+		CameraStack cameras;
+
+		// Function Buffers
+
+		// Functions called during 3D draw
+		FunctionBuffer fnBuffer3D;
+		// Functions called during 2D draw
+		FunctionBuffer fnBuffer2D;
+		// Functions called during screen draw
+		FunctionBuffer fnBufferScreen;
+		// Functions called after draw calls
+		FunctionBuffer fnBufferPostDraw;
 
 		// Running Logic
 	public:
