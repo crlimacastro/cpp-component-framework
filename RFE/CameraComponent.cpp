@@ -3,14 +3,7 @@
 
 #include "Entity.hpp"
 #include "Application.hpp"
-
-void rfe::CameraComponent::OnLoad()
-{
-    if (!transform)
-    {
-        transform = GetEntity()->GetComponent<rfe::Transform>();
-    }
-}
+#include "Transform.hpp"
 
 void rfe::CameraComponent::OnEnable()
 {
@@ -24,5 +17,5 @@ void rfe::CameraComponent::OnDisable()
 
 void rfe::CameraComponent::OnUpdate()
 {
-    camera.SetPosition(transform->position);
+    camera.SetPosition(GetEntity()->GetComponent<Transform>()->position);
 }

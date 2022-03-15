@@ -53,35 +53,35 @@ void rfe::Application::Start()
 
 void rfe::Application::Update()
 {
-	BeginDrawing();
-	ClearBackground(settings.GetClearColor());
-
 	if (cameras.GetActive())
 	{
 		cameras.GetActive()->Update();
 	}
 
-	OnUpdate();
+	BeginDrawing();
+	ClearBackground(settings.GetClearColor());
 
 	if (sceneManager.GetCurrentScene())
 	{
 		sceneManager.GetCurrentScene()->Update();
-	}
 
-	if (cameras.GetActive())
-	{
-		cameras.GetActive()->context3D.BeginDrawing();
-		fnBuffer3D.DumpInvoke();
-		cameras.GetActive()->context3D.EndDrawing();
-		cameras.GetActive()->context2D.BeginDrawing();
-		fnBuffer2D.DumpInvoke();
-		cameras.GetActive()->context2D.EndDrawing();
-		fnBufferScreen.DumpInvoke();
+		if (cameras.GetActive())
+		{
+			cameras.GetActive()->context3D.BeginDrawing();
+			sceneManager.GetCurrentScene()->Draw3D();
+			cameras.GetActive()->context3D.EndDrawing();
+
+			cameras.GetActive()->context2D.BeginDrawing();
+			sceneManager.GetCurrentScene()->Draw2D();
+			cameras.GetActive()->context2D.EndDrawing();
+
+			sceneManager.GetCurrentScene()->DrawScreen();
+		}
+
+		sceneManager.GetCurrentScene()->PostDrawUpdate();
 	}
 
 	EndDrawing();
-	
-	fnBufferPostDraw.DumpInvoke();
 }
 
 void rfe::Application::Stop()
@@ -106,6 +106,7 @@ void rfe::Application::InitSettings()
 	settings.TargetFPS(settings.GetTargetFPS());
 	settings.SetVsync(settings.HasVsync());
 	settings.SetForceStopKey(settings.GetForceStopKey());
+	settings.SetClearColor(settings.GetClearColor());
 }
 
 void rfe::Application::InitMemLeakDetection()

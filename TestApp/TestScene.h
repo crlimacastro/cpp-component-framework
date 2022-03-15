@@ -10,6 +10,10 @@ protected:
 		transform->position = { -10, 10, 10 };
 		AddEntity(camera);
 
-		AddEntity(FPSCounterPrefab().Create());
+		AddEntity(rfe::FPSCounterPrefab().Create());
+
+		auto tester = rfe::Entity::Create();
+		tester->AddComponent<Tester>();
+		AddEntity(tester);
 	}
 };

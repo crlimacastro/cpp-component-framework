@@ -1,21 +1,19 @@
 #pragma once
 
 #include "Component.hpp"
-#include "Transform.hpp"
 #include "Camera.hpp"
 
 namespace rfe
 {
+	class Camera;
+
 	class RFE_API CameraComponent : public Component
 	{
 	public:
-		std::shared_ptr<rfe::Transform> transform;
+		Camera camera;
 	protected:
-		void OnLoad() override;
 		void OnEnable() override;
 		void OnDisable() override;
 		void OnUpdate() override;
-	private:
-		Camera camera;
 	};
 }

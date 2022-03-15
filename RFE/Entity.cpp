@@ -23,16 +23,22 @@ void rfe::Entity::SetEnabled(bool value)
 
 	if (enabled)
 	{
-		for (auto& component : components)
+		for (auto& componentType : components)
 		{
-			component->OnEnable();
+			for (auto& component : *componentType.second)
+			{
+				component->OnEnable();
+			}
 		}
 	}
 	else
 	{
-		for (auto& component : components)
+		for (auto& componentType : components)
 		{
-			component->OnDisable();
+			for (auto& component : *componentType.second)
+			{
+				component->OnEnable();
+			}
 		}
 	}
 }
@@ -116,9 +122,12 @@ void rfe::Entity::Destroy(std::shared_ptr<Entity> entity)
 
 void rfe::Entity::Load()
 {
-	for (auto& component : components)
+	for (auto& componentType : components)
 	{
-		component->Load();
+		for (auto& component : *componentType.second)
+		{
+			component->Load();
+		}
 	}
 
 	for (auto& child : children)
@@ -134,9 +143,12 @@ void rfe::Entity::Start()
 		return;
 	}
 
-	for (auto& component : components)
+	for (auto& componentType : components)
 	{
-		component->Start();
+		for (auto& component : *componentType.second)
+		{
+			component->Start();
+		}
 	}
 
 	for (auto& child : children)
@@ -152,9 +164,12 @@ void rfe::Entity::Update()
 		return;
 	}
 
-	for (auto& component : components)
+	for (auto& componentType : components)
 	{
-		component->Update();
+		for (auto& component : *componentType.second)
+		{
+			component->Update();
+		}
 	}
 
 	for (auto& child : children)
@@ -163,11 +178,98 @@ void rfe::Entity::Update()
 	}
 }
 
+void rfe::Entity::Draw3D()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	for (auto& componentType : components)
+	{
+		for (auto& component : *componentType.second)
+		{
+			component->Draw3D();
+		}
+	}
+
+	for (auto& child : children)
+	{
+		child->Draw3D();
+	}
+}
+
+void rfe::Entity::Draw2D()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	for (auto& componentType : components)
+	{
+		for (auto& component : *componentType.second)
+		{
+			component->Draw2D();
+		}
+	}
+
+	for (auto& child : children)
+	{
+		child->Draw2D();
+	}
+}
+
+void rfe::Entity::DrawScreen()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	for (auto& componentType : components)
+	{
+		for (auto& component : *componentType.second)
+		{
+			component->DrawScreen();
+		}
+	}
+
+	for (auto& child : children)
+	{
+		child->DrawScreen();
+	}
+}
+
+void rfe::Entity::PostDrawUpdate()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	for (auto& componentType : components)
+	{
+		for (auto& component : *componentType.second)
+		{
+			component->PostDrawUpdate();
+		}
+	}
+
+	for (auto& child : children)
+	{
+		child->PostDrawUpdate();
+	}
+}
+
 void rfe::Entity::Unload()
 {
-	for (auto& component : components)
+	for (auto& componentType : components)
 	{
-		component->Unload();
+		for (auto& component : *componentType.second)
+		{
+			component->Unload();
+		}
 	}
 
 	for (auto& child : children)

@@ -41,9 +41,12 @@
 // ECS/Components
 #include "Transform.hpp"
 #include "CameraComponent.hpp"
+#include "FPSDrawer.hpp"
+#include "FPSToggler.hpp"
 
 // ECS/Prefabs
 #include "CameraPrefab.hpp"
+#include "FPSCounterPrefab.hpp"
 
 // App
 #include "Application.hpp"

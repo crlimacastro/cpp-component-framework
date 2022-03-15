@@ -13,7 +13,7 @@ namespace rfe
     {
     public:
         friend class Application;
-        friend class sceneManager;
+        friend class SceneManager;
     public:
         Scene() = default;
     public:
@@ -31,6 +31,10 @@ namespace rfe
         bool loaded = false;
 
         void Update();
+        void Draw3D();
+        void Draw2D();
+        void DrawScreen();
+        void PostDrawUpdate();
         void Load();
         void Unload();
     };

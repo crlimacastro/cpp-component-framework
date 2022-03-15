@@ -4,7 +4,7 @@
 
 namespace rfe
 {
-	class RFE_API sceneManager
+	class RFE_API SceneManager
 	{
 	public:
 		std::shared_ptr<Scene> GetCurrentScene();

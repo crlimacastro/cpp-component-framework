@@ -2,6 +2,7 @@
 
 namespace rfe
 {
+	// Object that queues up functions you can then and dispose of
 	class RFE_API FunctionBuffer
 	{
 	public:

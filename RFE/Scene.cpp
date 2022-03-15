@@ -33,6 +33,38 @@ void rfe::Scene::Update()
 	}
 }
 
+void rfe::Scene::Draw3D()
+{
+	for (auto& entity : entities)
+	{
+		entity->Draw3D();
+	}
+}
+
+void rfe::Scene::Draw2D()
+{
+	for (auto& entity : entities)
+	{
+		entity->Draw2D();
+	}
+}
+
+void rfe::Scene::DrawScreen()
+{
+	for (auto& entity : entities)
+	{
+		entity->DrawScreen();
+	}
+}
+
+void rfe::Scene::PostDrawUpdate()
+{
+	for (auto& entity : entities)
+	{
+		entity->PostDrawUpdate();
+	}
+}
+
 void rfe::Scene::Load()
 {
 	OnLoad();

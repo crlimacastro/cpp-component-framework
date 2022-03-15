@@ -3,7 +3,6 @@
 #include "ApplicationSettings.hpp"
 #include "CameraStack.h"
 #include "SceneManager.hpp"
-#include "FunctionBuffer.hpp"
 
 namespace rfe
 {
@@ -11,7 +10,6 @@ namespace rfe
 	// A static pointer to the app currently running can be retrieved with Application::GetActive()
 	// Overrides:
 	// protected OnStart() [Required] -> Define Start functionality and load the starting Scene
-	// protected OnUpdate() -> Called every Update before the Scene updates
 	// protected OnStop() -> Called before the app completely stops
 	class RFE_API Application
 	{
@@ -20,19 +18,8 @@ namespace rfe
 		~Application();
 		
 		ApplicationSettings settings;
-		sceneManager sceneManager;
+		SceneManager sceneManager;
 		CameraStack cameras;
-
-		// Function Buffers
-
-		// Functions called during 3D draw
-		FunctionBuffer fnBuffer3D;
-		// Functions called during 2D draw
-		FunctionBuffer fnBuffer2D;
-		// Functions called during screen draw
-		FunctionBuffer fnBufferScreen;
-		// Functions called after draw calls
-		FunctionBuffer fnBufferPostDraw;
 
 		// Running Logic
 	public:
@@ -54,7 +41,6 @@ namespace rfe
 		// Callbacks
 	protected:
 		virtual void OnStart() = 0;
-		virtual void OnUpdate() {}
 		virtual void OnStop() {}
 
 	private:

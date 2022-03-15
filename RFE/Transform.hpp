@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Component.hpp"
-
 #include "Vector3D.hpp"
-#include "Quaternion4D.hpp""
+#include "Quaternion4D.hpp"
 
 namespace rfe
 {

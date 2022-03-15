@@ -13,6 +13,6 @@ void rfe::Screenshot::SaveScreenshot(std::string fileName)
 
 	if (Application::GetActive())
 	{
-		Application::GetActive()->fnBufferPostDraw.Push([fileName]() { TakeScreenshot(("screenshots/" + fileName).c_str()); });
+		TakeScreenshot(("screenshots/" + fileName).c_str());
 	}
 }

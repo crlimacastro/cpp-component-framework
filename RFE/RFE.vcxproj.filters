@@ -25,6 +25,9 @@
     <Filter Include="src\Core\Static\Input">
       <UniqueIdentifier>{722406be-3ff2-4477-997a-fac7938a7dc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Core\ApplicationModules">
+      <UniqueIdentifier>{ccb3b9e7-213d-48b5-8386-27a9ea106361}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -93,16 +96,7 @@
     <ClInclude Include="Time.hpp">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="ApplicationSettings.hpp">
-      <Filter>src\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraStack.h">
-      <Filter>src\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.hpp">
-      <Filter>src\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.hpp">
       <Filter>src\Core</Filter>
     </ClInclude>
     <ClInclude Include="Random.hpp">
@@ -131,6 +125,24 @@
     </ClInclude>
     <ClInclude Include="FunctionBuffer.hpp">
       <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSDrawer.hpp">
+      <Filter>src\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSToggler.hpp">
+      <Filter>src\ECS\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSCounterPrefab.hpp">
+      <Filter>src\ECS\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationSettings.hpp">
+      <Filter>src\Core\ApplicationModules</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraStack.h">
+      <Filter>src\Core\ApplicationModules</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.hpp">
+      <Filter>src\Core\ApplicationModules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,16 +191,7 @@
     <ClCompile Include="Time.cpp">
       <Filter>src\Core\Static</Filter>
     </ClCompile>
-    <ClCompile Include="ApplicationSettings.cpp">
-      <Filter>src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraStack.cpp">
-      <Filter>src\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
       <Filter>src\Core</Filter>
     </ClCompile>
     <ClCompile Include="Random.cpp">
@@ -217,6 +220,24 @@
     </ClCompile>
     <ClCompile Include="FunctionBuffer.cpp">
       <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSCounterPrefab.cpp">
+      <Filter>src\ECS\Prefabs</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSDrawer.cpp">
+      <Filter>src\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSToggler.cpp">
+      <Filter>src\ECS\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ApplicationSettings.cpp">
+      <Filter>src\Core\ApplicationModules</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraStack.cpp">
+      <Filter>src\Core\ApplicationModules</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>src\Core\ApplicationModules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

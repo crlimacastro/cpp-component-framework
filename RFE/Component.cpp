@@ -3,7 +3,7 @@
 
 #include "Entity.hpp"
 
-std::shared_ptr<rfe::Entity> rfe::Component::GetEntity() const
+std::shared_ptr<rfe::Entity> rfe::Component::GetEntity()
 {
 	return entity.lock();
 }
@@ -47,6 +47,7 @@ void rfe::Component::Start()
 	{
 		return;
 	}
+
 	OnStart();
 	OnEnable();
 
@@ -61,6 +62,58 @@ void rfe::Component::Update()
 	}
 
 	OnUpdate();
+}
+
+void rfe::Component::Draw3D()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	OnDraw3D();
+
+#ifdef _DEBUG
+	OnDraw3DDebug();
+#endif
+}
+
+void rfe::Component::Draw2D()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	OnDraw2D();
+
+#ifdef _DEBUG
+	OnDraw2DDebug();
+#endif
+}
+
+void rfe::Component::DrawScreen()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	OnDrawScreen();
+
+#ifdef _DEBUG
+	OnDrawScreenDebug();
+#endif
+}
+
+void rfe::Component::PostDrawUpdate()
+{
+	if (!enabled)
+	{
+		return;
+	}
+
+	OnPostDrawUpdate();
 }
 
 void rfe::Component::Unload()

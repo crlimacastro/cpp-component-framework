@@ -35,13 +35,7 @@
     <ClInclude Include="Prefabs.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="FPSDrawer.h">
-      <Filter>src\Components</Filter>
-    </ClInclude>
     <ClInclude Include="KeyboardController.h">
-      <Filter>src\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSToggler.h">
       <Filter>src\Components</Filter>
     </ClInclude>
     <ClInclude Include="CallbacksTester.h">
@@ -50,11 +44,11 @@
     <ClInclude Include="CallbacksTesterToggler.h">
       <Filter>src\Components</Filter>
     </ClInclude>
-    <ClInclude Include="FPSCounterPrefab.h">
-      <Filter>src\Prefabs</Filter>
-    </ClInclude>
     <ClInclude Include="CallbacksTesterPrefab.h">
       <Filter>src\Prefabs</Filter>
+    </ClInclude>
+    <ClInclude Include="Tester.h">
+      <Filter>src\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
