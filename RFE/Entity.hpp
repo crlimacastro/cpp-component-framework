@@ -54,7 +54,7 @@ namespace rfe
 			std::string componentName = typeid(T).name();
 			if (components.contains(componentName) && components.at(componentName)->size() > 0)
 			{
-				auto &component = *components.at(componentName)->begin();
+				auto& component = *components.at(componentName)->begin();
 				components.at(componentName)->erase(components.at(componentName)->begin());
 				return component;
 			}
@@ -93,9 +93,10 @@ namespace rfe
 		}
 
 		// Breadth First Search of first Component of type in Entity and its children
-		/*template <typename T>
-		const std::shared_ptr<T> GetComponentInChildren() const
+		template <typename T>
+		std::shared_ptr<T> GetComponentInChildren() const
 		{
+			std::string componentName = typeid(T).name();
 			std::queue<shared_ptr<T>> next;
 			next.push(shared_from_this());
 
@@ -104,12 +105,9 @@ namespace rfe
 				auto& entity = next.front();
 				next.pop();
 
-				for (auto& c : entity.components)
+				if (entity.components.contains(componentName) && entity.components.at(componentName)->size() > 0)
 				{
-					if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
-					{
-						return t;
-					}
+					return std::dynamic_pointer_cast<T>(*entity.components.at(componentName)->begin());
 				}
 
 				for (auto& child : entity.children)
@@ -119,18 +117,17 @@ namespace rfe
 			}
 
 			return nullptr;
-		}*/
+		}
 
 		// Gets the first Component found of type in Entity and its parents
-		/*template <typename T>
+		template <typename T>
 		const std::shared_ptr<T> GetComponentInParent() const
 		{
-			for (auto& c : components)
+			std::string componentName = typeid(T).name();
+
+			if (components.contains(componentName) && components.at(componentName)->size() > 0)
 			{
-				if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
-				{
-					return t;
-				}
+				return std::dynamic_pointer_cast<T>(*components.at(componentName)->begin());
 			}
 
 			if (parent)
@@ -139,7 +136,7 @@ namespace rfe
 			}
 
 			return nullptr;
-		}*/
+		}
 
 		// Gets all Components of type T
 		template <typename T>
@@ -156,58 +153,54 @@ namespace rfe
 			}
 		}
 
-		//// Gets all Components found of type in Entity and its children
-		//template <typename T>
-		//const std::vector<std::shared_ptr<T>> GetComponentsInChildren() const
-		//{
-		//	std::vector<std::shared_ptr<T>> out;
+		// Gets all Components found of type in Entity and its children
+		template <typename T>
+		std::shared_ptr<std::vector<std::shared_ptr<T>>> GetComponentsInChildren() const
+		{
+			std::string componentName = typeid(T).name();
+			std::shared_ptr<std::vector<std::shared_ptr<T>>> out = std::make_shared<std::vector<std::shared_ptr<T>>>();
+			std::queue<shared_ptr<T>> next;
+			next.push(shared_from_this());
 
-		//	std::queue<shared_ptr<T>> next;
-		//	next.push(shared_from_this());
+			while (!next.empty())
+			{
+				auto& entity = next.front();
+				next.pop();
 
-		//	while (!next.empty())
-		//	{
-		//		auto& entity = next.front();
-		//		next.pop();
+				if (entity.components.contains(componentName))
+				{
+					out->insert(entity.components.at(componentName).begin(), entity.components.at(componentName).end());
+				}
 
-		//		for (auto& c : entity.components)
-		//		{
-		//			if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
-		//			{
-		//				out.push_back(t);
-		//			}
-		//		}
+				for (auto& child : entity.children)
+				{
+					next.push(child);
+				}
+			}
 
-		//		for (auto& child : entity.children)
-		//		{
-		//			next.push(child);
-		//		}
-		//	}
+			return out;
+		}
 
-		//	return out;
-		//}
+		// Gets all Components found of type in Entity and its parents
+		template <typename T>
+		std::shared_ptr<std::vector<std::shared_ptr<T>>> GetComponentsInParent() const
+		{
+			std::string componentName = typeid(T).name();
+			std::shared_ptr<std::vector<std::shared_ptr<T>>> out = std::make_shared<std::vector<std::shared_ptr<T>>>();
 
-		//// Gets all Components found of type in Entity and its parents
-		//template <typename T>
-		//const std::vector<std::shared_ptr<T>> GetComponentsInParent() const
-		//{
-		//	std::vector<std::shared_ptr<T>> out;
+			if (components.contains(componentName))
+			{
+				out->insert(components.at(componentName).begin(), components.at(componentName).end());
+			}
 
-		//	for (auto& c : components)
-		//	{
-		//		if (auto t = std::dynamic_pointer_cast<T>(c); t != nullptr)
-		//		{
-		//			out.push_back(t);
-		//		}
-		//	}
+			if (parent)
+			{
+				auto parentComponents = parent->GetComponentsInParent<T>();
+				out->insert(parentComponents->begin(), parentComponents->end());
+			}
 
-		//	if (parent)
-		//	{
-		//		return parent->GetComponentInParent<T>();
-		//	}
-
-		//	return out;
-		//}
+			return out;
+		}
 
 	private:
 		Entity() = default;
