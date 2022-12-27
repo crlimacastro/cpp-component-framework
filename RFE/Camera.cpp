@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "Camera.hpp"
+#include "Camera.h"
 
-#include "Vector2D.hpp"
-#include "Vector3D.hpp"
-#include "Window.hpp"
+#include "v2f.h"
+#include "v3f.h"
+#include "Window.h"
 
-void rfe::Camera::SetPosition(Vector3D<float> value)
+void rfe::Camera::SetPosition(rfe::v3f value)
 {
 	context3D.camera3D.position = value;
 	context2D.camera2D.target = { value.x, value.y };
@@ -33,27 +33,27 @@ void rfe::Camera::Context3D::EndDrawing()
 	EndMode3D();
 }
 
-rfe::Vector3D<float> rfe::Camera::Context3D::GetPosition() const
+rfe::v3f rfe::Camera::Context3D::GetPosition() const
 {
-	return Vector3D<float>::From(camera3D.position);
+	return v3f(camera3D.position);
 }
 
-rfe::Vector3D<float> rfe::Camera::Context3D::GetTarget() const
+rfe::v3f rfe::Camera::Context3D::GetTarget() const
 {
-	return Vector3D<float>::From(camera3D.target);
+	return v3f(camera3D.target);
 }
 
-void rfe::Camera::Context3D::SetTarget(Vector3D<float> value)
+void rfe::Camera::Context3D::SetTarget(v3f value)
 {
 	camera3D.target = value;
 }
 
-rfe::Vector3D<float> rfe::Camera::Context3D::GetUp() const
+rfe::v3f rfe::Camera::Context3D::GetUp() const
 {
-	return Vector3D<float>::From(camera3D.up);
+	return v3f(camera3D.up);
 }
 
-void rfe::Camera::Context3D::SetUp(Vector3D<float> value)
+void rfe::Camera::Context3D::SetUp(v3f value)
 {
 	camera3D.up = value;
 }
@@ -99,9 +99,9 @@ Matrix rfe::Camera::Context3D::GetMatrix() const
 	return GetCameraMatrix(camera3D);
 }
 
-rfe::Vector2D<float> rfe::Camera::Context3D::GetWorldToScreenPoint(Vector3D<float> position) const
+rfe::v2f rfe::Camera::Context3D::GetWorldToScreenPoint(v3f position) const
 {
-	return Vector2D<float>::From(GetWorldToScreen(position, camera3D));
+	return v2f(GetWorldToScreen(position, camera3D));
 }
 
 rfe::Camera::Context2D::Context2D()
@@ -119,9 +119,9 @@ void rfe::Camera::Context2D::EndDrawing()
 	EndMode2D();
 }
 
-rfe::Vector2D<float> rfe::Camera::Context2D::GetPosition() const
+rfe::v2f rfe::Camera::Context2D::GetPosition() const
 {
-	return Vector2D<float>::From(camera2D.target);
+	return v2f(camera2D.target);
 }
 
 float rfe::Camera::Context2D::GetRotation() const
@@ -149,12 +149,12 @@ Matrix rfe::Camera::Context2D::GetMatrix() const
 	return GetCameraMatrix2D(camera2D);
 }
 
-rfe::Vector2D<float> rfe::Camera::Context2D::GetWorldToScreen(Vector2D<float> position) const
+rfe::v2f rfe::Camera::Context2D::GetWorldToScreen(v2f position) const
 {
-	return Vector2D<float>::From(GetWorldToScreen2D(position, camera2D));
+	return GetWorldToScreen2D(position, camera2D);
 }
 
-rfe::Vector2D<float> rfe::Camera::Context2D::GetScreenToWorld(Vector2D<float> position) const
+rfe::v2f rfe::Camera::Context2D::GetScreenToWorld(v2f position) const
 {
-	return Vector2D<float>::From(GetScreenToWorld2D(position, camera2D));
+	return GetScreenToWorld2D(position, camera2D);
 }

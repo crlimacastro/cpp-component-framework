@@ -2,8 +2,7 @@
 
 namespace rfe
 {
-	template<typename T>
-	struct Vector2D;
+	struct v2f;
 }
 
 namespace rfe::Mouse
@@ -23,9 +22,9 @@ namespace rfe::Mouse
 	RFE_API bool ButtonDown(Button button);
 	RFE_API bool ButtonReleased(Button button);
 	RFE_API bool ButtonUp(Button button);
-	RFE_API Vector2D<float> GetPosition();
+	RFE_API v2f GetPosition();
 	// Get mouse delta between frames
-	RFE_API Vector2D<float> GetPositionDelta();
+	RFE_API v2f GetPositionDelta();
 	RFE_API void SetPosition(int x, int y);
 	RFE_API void SetOffset(int x, int y);
 	RFE_API void SetScale(float x, float y);

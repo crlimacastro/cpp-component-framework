@@ -1,15 +1,15 @@
 #include "pch.h"
-#include "ApplicationSettings.hpp"
+#include "ApplicationSettings.h"
 
-#include "Window.hpp"
-#include "Monitor.hpp"
+#include "Window.h"
+#include "Monitor.h"
 
-const Color& rfe::ApplicationSettings::GetClearColor() const
+const rfe::color& rfe::ApplicationSettings::GetClearColor() const
 {
 	return clearColor;
 }
 
-void rfe::ApplicationSettings::SetClearColor(const Color& value)
+void rfe::ApplicationSettings::SetClearColor(const color& value)
 {
 	clearColor = value;
 }

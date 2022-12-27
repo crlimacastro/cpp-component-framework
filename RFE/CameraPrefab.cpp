@@ -1,9 +1,9 @@
 #include "pch.h"
-#include "CameraPrefab.hpp"
+#include "CameraPrefab.h"
 
-#include "Entity.hpp"
-#include "Transform.hpp"
-#include "CameraComponent.hpp"
+#include "Entity.h"
+#include "Transform.h"
+#include "CameraComponent.h"
 
 std::shared_ptr<rfe::Entity> rfe::CameraPrefab::Create() const
 {

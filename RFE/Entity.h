@@ -1,9 +1,12 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Component.h"
 
 namespace rfe
 {
+	template <typename T>
+	concept TComponent = std::is_base_of_v<Component, T>;
+
 	// Private constructor to avoid Stack allocation. Create Entity with static rfe::Entity::Create()
 	// Handle Entities with std::shared_ptr<Entity>
 	class RFE_API Entity : public std::enable_shared_from_this<Entity>
@@ -11,8 +14,11 @@ namespace rfe
 	public:
 		friend class Scene;
 		friend class Component;
+		friend void make_shared();
+
 	public:
-		static std::shared_ptr<Entity> Create();
+		static ref<Entity> Create();
+		static void Destroy(ref<Entity> entity);
 
 		bool GetEnabled() const;
 		void SetEnabled(bool value);
@@ -26,12 +32,11 @@ namespace rfe
 		void RemoveChild(std::shared_ptr<Entity> entity);
 		void ClearChildren();
 
-		static void Destroy(std::shared_ptr<Entity> entity);
 
 		// Component Logic
 	public:
 		// Adds a Component of type T and returns it
-		template <typename T>
+		template <TComponent T>
 		std::shared_ptr<T> AddComponent()
 		{
 			auto component = std::make_shared<T>();
@@ -48,7 +53,7 @@ namespace rfe
 		}
 
 		// Removes the first Component of type T and returns it
-		template <typename T>
+		template <TComponent T>
 		std::shared_ptr<T> RemoveComponent()
 		{
 			std::string componentName = typeid(T).name();
@@ -63,7 +68,7 @@ namespace rfe
 		}
 
 		// Removes all Components of type T
-		template <typename T>
+		template <TComponent T>
 		void RemoveComponents()
 		{
 			std::string componentName = typeid(T).name();
@@ -80,7 +85,7 @@ namespace rfe
 		}
 
 		// Gets the first Component of type T or nullptr if none
-		template <typename T>
+		template <TComponent T>
 		std::shared_ptr<T> GetComponent() const
 		{
 			std::string componentName = typeid(T).name();
@@ -93,7 +98,7 @@ namespace rfe
 		}
 
 		// Breadth First Search of first Component of type in Entity and its children
-		template <typename T>
+		template <TComponent T>
 		std::shared_ptr<T> GetComponentInChildren() const
 		{
 			std::string componentName = typeid(T).name();
@@ -120,7 +125,7 @@ namespace rfe
 		}
 
 		// Gets the first Component found of type in Entity and its parents
-		template <typename T>
+		template <TComponent T>
 		const std::shared_ptr<T> GetComponentInParent() const
 		{
 			std::string componentName = typeid(T).name();
@@ -139,7 +144,7 @@ namespace rfe
 		}
 
 		// Gets all Components of type T
-		template <typename T>
+		template <TComponent T>
 		std::shared_ptr<std::vector<std::shared_ptr<T>>> GetComponents() const
 		{
 			std::string componentName = typeid(T).name();
@@ -154,7 +159,7 @@ namespace rfe
 		}
 
 		// Gets all Components found of type in Entity and its children
-		template <typename T>
+		template <TComponent T>
 		std::shared_ptr<std::vector<std::shared_ptr<T>>> GetComponentsInChildren() const
 		{
 			std::string componentName = typeid(T).name();
@@ -182,7 +187,7 @@ namespace rfe
 		}
 
 		// Gets all Components found of type in Entity and its parents
-		template <typename T>
+		template <TComponent T>
 		std::shared_ptr<std::vector<std::shared_ptr<T>>> GetComponentsInParent() const
 		{
 			std::string componentName = typeid(T).name();
@@ -203,12 +208,6 @@ namespace rfe
 		}
 
 	private:
-		Entity() = default;
-		Entity(const Entity& other) = delete;
-		Entity(const Entity&& other) noexcept = delete;
-		Entity& operator=(const Entity& other) = delete;
-		Entity& operator=(Entity&& other) noexcept = delete;
-
 		bool enabled = true;
 		std::string name = "Entity";
 		std::weak_ptr<Entity> parent;

@@ -5,7 +5,7 @@ class Tester : public rfe::Component
 protected:
 	void OnUpdate() override
 	{
-		rfe::Vector3D<float> direction;
+		rfe::v3f direction;
 
 		if (IsKeyDown(KEY_W))
 		{
@@ -46,6 +46,6 @@ protected:
 		DrawGrid(10, 1.0f);
 	}
 private:
-	rfe::Vector3D<float> cubePosition = { 0, 0, 0 };
+	rfe::v3f cubePosition = { 0, 0, 0 };
 	float speed = 10;
 };

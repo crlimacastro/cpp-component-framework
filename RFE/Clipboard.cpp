@@ -1,12 +1,12 @@
 #include "pch.h"
-#include "Clipboard.hpp"
+#include "Clipboard.h"
 
-const char* rfe::Clipboard::GetText()
+std::string rfe::Clipboard::GetText()
 {
-    return GetClipboardText();
+	return GetClipboardText();
 }
 
-void rfe::Clipboard::SetText(const char* value)
+void rfe::Clipboard::SetText(std::string value)
 {
-    SetClipboardText(value);
+	SetClipboardText(value.c_str());
 }

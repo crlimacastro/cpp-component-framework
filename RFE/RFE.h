@@ -4,49 +4,49 @@
 // Raylib Fae Engine
 
  // Core/Structs
-#include "VectorND.hpp"
-#include "Vector2D.hpp"
-#include "Vector3D.hpp"
-#include "Quaternion4D.hpp"
+#include "Color.h"
+#include "v2f.h"
+#include "v3f.h"
+#include "q4f.h"
 
 // Core
-#include "Log.hpp"
-#include "Event.hpp"
-#include "Camera.hpp"
-#include "FunctionBuffer.hpp"
+#include "Log.h"
+#include "Event.h"
+#include "Camera.h"
 
 // Core/Static
-#include "Clipboard.hpp"
-#include "Cursor.hpp"
-#include "File.hpp"
-#include "Monitor.hpp"
-#include "Random.hpp"
-#include "Screenshot.hpp"
-#include "Time.hpp"
-#include "URL.hpp"
-#include "Window.hpp"
+#include "Clipboard.h"
+#include "Cursor.h"
+#include "File.h"
+#include "Monitor.h"
+#include "Random.h"
+#include "Screenshot.h"
+#include "RFETime.h"
+#include "URL.h"
+#include "Window.h"
 
 // Core/Static/Input
-#include "Keyboard.hpp"
-#include "Gamepad.hpp"
-#include "Mouse.hpp"
-#include "Touch.hpp"
+#include "Keyboard.h"
+#include "Gamepad.h"
+#include "Mouse.h"
+#include "Touch.h"
 
 // ECS
-#include "Component.hpp"
-#include "Entity.hpp"
-#include "Prefab.hpp"
-#include "Scene.hpp"
+#include "Component.h"
+#include "Entity.h"
+#include "Prefab.h"
+#include "Scene.h"
+#include "SceneManager.h"
 
 // ECS/Components
-#include "Transform.hpp"
-#include "CameraComponent.hpp"
-#include "FPSDrawer.hpp"
-#include "FPSToggler.hpp"
+#include "Transform.h"
+#include "CameraComponent.h"
+#include "FPSDrawer.h"
+#include "FPSToggler.h"
 
 // ECS/Prefabs
-#include "CameraPrefab.hpp"
-#include "FPSCounterPrefab.hpp"
+#include "CameraPrefab.h"
+#include "FPSCounterPrefab.h"
 
 // App
-#include "Application.hpp"
+#include "Application.h"

@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Scene.hpp"
+#include "Scene.h"
 
 #include "TestScene.h"

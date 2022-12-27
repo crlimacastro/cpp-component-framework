@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "FPSDrawer.hpp"
+#include "FPSDrawer.h"
 
-#include "Entity.hpp"
-#include "Transform.hpp"
+#include "Entity.h"
+#include "Transform.h"
 
 void rfe::FPSDrawer::OnDrawScreen()
 {
-	auto &position = GetEntity()->GetComponent<Transform>()->position;
+	auto& position = GetEntity()->GetComponent<Transform>()->position;
 	DrawFPS(position.x, position.y);
 }

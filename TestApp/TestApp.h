@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RFE.h"
+using namespace rfe;
 
 #include "Components.h"
 #include "Prefabs.h"
@@ -12,6 +13,6 @@ protected:
 	void OnStart() override
 	{
 		settings.SetForceStopKey(KEY_ESCAPE);
-		sceneManager.LoadScene<TestScene>();
+		SceneManager::LoadScene<TestScene>();
 	}
 };

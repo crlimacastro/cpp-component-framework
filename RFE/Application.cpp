@@ -1,11 +1,11 @@
 #include "pch.h"
-#include "Application.hpp"
+#include "Application.h"
 
-#include "Window.hpp"
-#include "Monitor.hpp"
-#include "Camera.hpp"
-#include "SceneManager.hpp"
-#include "Log.hpp"
+#include "Window.h"
+#include "Monitor.h"
+#include "Camera.h"
+#include "SceneManager.h"
+#include "Log.h"
 
 rfe::Application* rfe::Application::activeApp = nullptr;
 
@@ -61,24 +61,24 @@ void rfe::Application::Update()
 	BeginDrawing();
 	ClearBackground(settings.GetClearColor());
 
-	if (sceneManager.GetCurrentScene())
+	if (SceneManager::GetCurrentScene())
 	{
-		sceneManager.GetCurrentScene()->Update();
+		SceneManager::GetCurrentScene()->Update();
 
 		if (cameras.GetActive())
 		{
 			cameras.GetActive()->context3D.BeginDrawing();
-			sceneManager.GetCurrentScene()->Draw3D();
+			SceneManager::GetCurrentScene()->Draw3D();
 			cameras.GetActive()->context3D.EndDrawing();
 
 			cameras.GetActive()->context2D.BeginDrawing();
-			sceneManager.GetCurrentScene()->Draw2D();
+			SceneManager::GetCurrentScene()->Draw2D();
 			cameras.GetActive()->context2D.EndDrawing();
 
-			sceneManager.GetCurrentScene()->DrawScreen();
+			SceneManager::GetCurrentScene()->DrawScreen();
 		}
 
-		sceneManager.GetCurrentScene()->PostDrawUpdate();
+		SceneManager::GetCurrentScene()->PostDrawUpdate();
 	}
 
 	EndDrawing();
@@ -93,7 +93,7 @@ void rfe::Application::Stop()
 
 	OnStop();
 
-	sceneManager.UnloadScene();
+	SceneManager::UnloadScene();
 
 	Window::Close();
 

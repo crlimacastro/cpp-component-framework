@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "Component.hpp"
+#include "Component.h"
 
-#include "Entity.hpp"
+#include "Entity.h"
 
 std::shared_ptr<rfe::Entity> rfe::Component::GetEntity()
 {

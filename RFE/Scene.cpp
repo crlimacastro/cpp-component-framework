@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "Scene.hpp"
+#include "Scene.h"
 
-void rfe::Scene::AddEntity(std::shared_ptr<Entity> entity)
+void rfe::Scene::AddEntity(rfe::ref<Entity> entity)
 {
 	entities.emplace(entity);
 	if (loaded)
@@ -11,7 +11,7 @@ void rfe::Scene::AddEntity(std::shared_ptr<Entity> entity)
 	}
 }
 
-void rfe::Scene::RemoveEntity(std::shared_ptr<Entity> entity)
+void rfe::Scene::RemoveEntity(rfe::ref<Entity> entity)
 {
 	if (entities.contains(entity))
 	{

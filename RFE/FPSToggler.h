@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Component.hpp"
-#include "Keyboard.hpp"
+#include "Component.h"
+#include "Keyboard.h"
 
 namespace rfe
 {

@@ -1,10 +1,10 @@
 #include "pch.h"
-#include "FPSCounterPrefab.hpp"
+#include "FPSCounterPrefab.h"
 
-#include "Entity.hpp"
-#include "Transform.hpp"
-#include "FPSDrawer.hpp"
-#include "FPSToggler.hpp"
+#include "Entity.h"
+#include "Transform.h"
+#include "FPSDrawer.h"
+#include "FPSToggler.h"
 
 std::shared_ptr<rfe::Entity> rfe::FPSCounterPrefab::Create() const
 {

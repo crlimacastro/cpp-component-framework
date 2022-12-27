@@ -1,8 +1,7 @@
 #pragma once
 
-#include "ApplicationSettings.hpp"
+#include "ApplicationSettings.h"
 #include "CameraStack.h"
-#include "SceneManager.hpp"
 
 namespace rfe
 {
@@ -16,9 +15,8 @@ namespace rfe
 	public:
 		Application() = default;
 		~Application();
-		
+
 		ApplicationSettings settings;
-		SceneManager sceneManager;
 		CameraStack cameras;
 
 		// Running Logic

@@ -2,8 +2,22 @@
 
 namespace rfe
 {
-	template<typename T>
-	struct Vector2D;
+	struct v2f;
+
+	class RFE_API Touch
+	{
+	public:
+		static ref<Touch> Get(int touch = 0);
+		v2f GetPosition() const;
+	private:
+		Touch(int touch = 0) : touch(touch) {}
+		int touch;
+	};
+
+	namespace Touches
+	{
+		RFE_API std::vector<ref<Touch>> GetTouches();
+	}
 
 	enum class Gesture
 	{
@@ -22,32 +36,15 @@ namespace rfe
 
 	namespace Gestures
 	{
-		// Gets all enabled gestures
-		std::unordered_set<Gesture> GetEnabledGestures();
-		bool IsGestureEnabled(Gesture gesture);
-		void SetGestureEnabled(Gesture gesture, bool value);
-
+		void SetEnabled(unsigned int flags);
 		bool IsDetected(Gesture gesture);
+
 		Gesture GetLastGesture();
+
 		float GetHoldDuration();
-		Vector2D<float> GetDragVector();
+		v2f GetDragVector();
 		float GetDragAngle();
-		Vector2D<float> GetPinchVector();
+		v2f GetPinchVector();
 		float GetPinchAngle();
 	}
-
-	class RFE_API Touch
-	{
-	public:
-		static std::shared_ptr<Touch> Get(int touch = 0);
-		Vector2D<float> GetPosition() const;
-	private:
-		Touch(int touch = 0) : touch(touch) {}
-		int touch;
-	};
 };
-
-namespace rfe::Touches
-{
-	RFE_API std::shared_ptr<std::vector<std::shared_ptr<Touch>>> GetTouches();
-}

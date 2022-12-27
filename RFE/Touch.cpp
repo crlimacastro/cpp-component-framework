@@ -1,56 +1,37 @@
 #include "pch.h"
-#include "Touch.hpp"
+#include "Touch.h"
 
-#include "Vector2D.hpp"
+#include "v2f.h"
 
-std::shared_ptr<rfe::Touch> rfe::Touch::Get(int touch)
+rfe::ref<rfe::Touch> rfe::Touch::Get(int touch)
 {
 	if (touch < 0 || touch >= GetTouchPointCount())
 	{
 		return nullptr;
 	}
 
-	return std::shared_ptr<Touch>(new Touch(touch));
+	return ref<Touch>(new Touch(touch));
 }
 
-rfe::Vector2D<float> rfe::Touch::GetPosition() const
+rfe::v2f rfe::Touch::GetPosition() const
 {
-	return Vector2D<float>::From(GetTouchPosition(touch));
+	return v2f(GetTouchPosition(touch));
 }
 
-std::shared_ptr<std::vector<std::shared_ptr<rfe::Touch>>> rfe::Touches::GetTouches()
+std::vector<rfe::ref<rfe::Touch>> rfe::Touches::GetTouches()
 {
-	auto touches = std::make_shared<std::vector<std::shared_ptr<Touch>>>();
+	auto touches = std::vector<ref<Touch>>();
 	int touchCount = GetTouchPointCount();
 	for (int i = 0; i < touchCount; i++)
 	{
-		touches->push_back(Touch::Get(i));
+		touches.push_back(Touch::Get(i));
 	}
 	return touches;
 }
 
-static std::unordered_set<rfe::Gesture> enabledGestures;
-
-std::unordered_set<rfe::Gesture> rfe::Gestures::GetEnabledGestures()
+void rfe::Gestures::SetEnabled(unsigned int flags)
 {
-	return enabledGestures;
-}
-
-bool rfe::Gestures::IsGestureEnabled(Gesture gesture)
-{
-	return enabledGestures.find(gesture) != enabledGestures.end();
-}
-
-void rfe::Gestures::SetGestureEnabled(Gesture gesture, bool value)
-{
-	if (value)
-	{
-		enabledGestures.insert(gesture);
-	}
-	else
-	{
-		enabledGestures.erase(gesture);
-	}
+	SetGesturesEnabled(flags);
 }
 
 bool rfe::Gestures::IsDetected(Gesture gesture)
@@ -68,9 +49,9 @@ float rfe::Gestures::GetHoldDuration()
 	return GetGestureHoldDuration();
 }
 
-rfe::Vector2D<float> rfe::Gestures::GetDragVector()
+rfe::v2f rfe::Gestures::GetDragVector()
 {
-	return Vector2D<float>::From(GetGestureDragVector());
+	return v2f(GetGestureDragVector());
 }
 
 float rfe::Gestures::GetDragAngle()
@@ -78,9 +59,9 @@ float rfe::Gestures::GetDragAngle()
 	return GetGestureDragAngle();
 }
 
-rfe::Vector2D<float> rfe::Gestures::GetPinchVector()
+rfe::v2f rfe::Gestures::GetPinchVector()
 {
-	return Vector2D<float>::From(GetGesturePinchVector());
+	return v2f(GetGesturePinchVector());
 }
 
 float rfe::Gestures::GetPinchAngle()

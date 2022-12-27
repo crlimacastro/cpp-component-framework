@@ -1,3 +1,4 @@
+// File named Time.hpp to avoid name collisions with any Time.h
 #pragma once
 
 namespace rfe::Time

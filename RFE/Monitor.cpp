@@ -1,19 +1,19 @@
 #include "pch.h"
-#include "Monitor.hpp"
+#include "Monitor.h"
 
-#include "Vector2D.hpp"
+#include "v2f.h"
 
-std::shared_ptr<rfe::Monitor> rfe::Monitor::Get(int monitor)
+rfe::ref<rfe::Monitor> rfe::Monitor::Get(int monitor)
 {
 	if (monitor < 0 || monitor >= GetMonitorCount())
 	{
 		return nullptr;
 	}
 
-	return std::shared_ptr<Monitor>(new Monitor(monitor));
+	return ref<Monitor>(new Monitor(monitor));
 }
 
-rfe::Vector2D<float> rfe::Monitor::GetPosition() const
+rfe::v2f rfe::Monitor::GetPosition() const
 {
 	Vector2 position = GetMonitorPosition(monitor);
 	return { position.x, position.y };
@@ -49,13 +49,13 @@ const char* rfe::Monitor::GetName() const
 	return GetMonitorName(monitor);
 }
 
-std::shared_ptr<std::vector<std::shared_ptr<rfe::Monitor>>> rfe::Monitors::GetMonitors()
+std::vector<rfe::ref<rfe::Monitor>> rfe::Monitors::GetMonitors()
 {
-	auto monitors = std::make_shared<std::vector<std::shared_ptr<Monitor>>>();
+	auto monitors = std::vector<ref<Monitor>>();
 	int monitorCount = GetMonitorCount();
 	for (int i = 0; i < monitorCount; i++)
 	{
-		monitors->push_back(Monitor::Get(i));
+		monitors.push_back(Monitor::Get(i));
 	}
 	return monitors;
 }

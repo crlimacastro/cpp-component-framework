@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "FPSToggler.hpp"
+#include "FPSToggler.h"
 
-#include "Entity.hpp"
-#include "FPSDrawer.hpp"
+#include "Entity.h"
+#include "FPSDrawer.h"
 
 void rfe::FPSToggler::OnUpdate()
 {

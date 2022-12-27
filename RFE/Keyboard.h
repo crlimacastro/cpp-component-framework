@@ -120,9 +120,9 @@ namespace rfe::Keyboard
 		VolumeDown = 25        // Key: Android volume down button
 	};
 
-	bool KeyPressed(Key key);
-	bool KeyDown(Key key);
-	bool KeyReleased(Key key);
-	bool KeyUp(Key key);
+	RFE_API bool KeyPressed(Key key);
+	RFE_API bool KeyDown(Key key);
+	RFE_API bool KeyReleased(Key key);
+	RFE_API bool KeyUp(Key key);
 };
 

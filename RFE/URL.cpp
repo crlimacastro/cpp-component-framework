@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "URL.hpp"
+#include "URL.h"
 
-void rfe::URL::Open(const char* url)
+void rfe::URL::Open(std::string url)
 {
-	OpenURL(url);
+	OpenURL(url.c_str());
 }

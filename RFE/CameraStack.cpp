@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CameraStack.h"
 
-#include "Camera.hpp"
+#include "Camera.h"
 
 rfe::Camera* rfe::CameraStack::GetActive() const
 {

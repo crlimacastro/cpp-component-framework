@@ -1,14 +1,14 @@
 #include "pch.h"
-#include "Gamepad.hpp"
+#include "Gamepad.h"
 
-std::shared_ptr<rfe::Gamepad> rfe::Gamepad::Get(int gamepad)
+rfe::ref<rfe::Gamepad> rfe::Gamepad::Get(int gamepad)
 {
 	if (!IsGamepadAvailable(gamepad))
 	{
 		return nullptr;
 	}
 
-	return std::shared_ptr<Gamepad>(new Gamepad(gamepad));
+	return ref<Gamepad>(new Gamepad(gamepad));
 }
 
 std::string rfe::Gamepad::GetName() const
@@ -51,13 +51,13 @@ float rfe::Gamepad::GetAxis(Axis axis) const
 	return GetGamepadAxisMovement(gamepad, (int)axis);
 }
 
-std::shared_ptr<std::vector<std::shared_ptr<rfe::Gamepad>>> rfe::Gamepads::GetGamepads()
+std::vector<rfe::ref<rfe::Gamepad>> rfe::Gamepads::GetGamepads()
 {
-	auto gamepads = std::shared_ptr < std::vector<std::shared_ptr<Gamepad>>>();
+	auto gamepads = std::vector<ref<Gamepad>>();
 	int gamepad = 0;
 	while (IsGamepadAvailable(gamepad))
 	{
-		gamepads->push_back(std::shared_ptr<Gamepad>(Gamepad::Get(gamepad)));
+		gamepads.push_back(ref<Gamepad>(Gamepad::Get(gamepad)));
 		gamepad++;
 	}
 	return gamepads;

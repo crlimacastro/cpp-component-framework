@@ -2,17 +2,14 @@
 
 namespace rfe
 {
-	template <typename T>
-	struct Vector2D;
-
-	template <typename T>
-	struct Vector3D;
+	struct v2f;
+	struct v3f;
 
 	class RFE_API Camera
 	{
 		// All Cameras
 	public:
-		void SetPosition(Vector3D<float> value);
+		void SetPosition(v3f value);
 
 		void Update();
 
@@ -30,12 +27,12 @@ namespace rfe
 			// End Camera 3D drawing mode
 			void EndDrawing();
 
-			Vector3D<float> GetPosition() const;
+			v3f GetPosition() const;
 
-			Vector3D<float> GetTarget() const;
-			void SetTarget(Vector3D<float> value);
-			Vector3D<float> GetUp() const;
-			void SetUp(Vector3D<float> value);
+			v3f GetTarget() const;
+			void SetTarget(v3f value);
+			v3f GetUp() const;
+			void SetUp(v3f value);
 			float GetFOV() const;
 			void SetFOX(float value);
 
@@ -60,8 +57,8 @@ namespace rfe
 			// Get camera transform matrix (view matrix)
 			Matrix GetMatrix() const;
 			// Get the screen space position for a 3d world space position
-			Vector2D<float> GetWorldToScreenPoint(Vector3D<float> position) const;
-			
+			v2f GetWorldToScreenPoint(v3f position) const;
+
 		private:
 			Camera3D camera3D = { 0 };
 			Mode cameraMode = Mode::Custom;
@@ -83,7 +80,7 @@ namespace rfe
 			// End Camera 2D drawing mode
 			void EndDrawing();
 
-			Vector2D<float> GetPosition() const;
+			v2f GetPosition() const;
 
 			float GetRotation() const;
 			void SetRotation(float value);
@@ -93,9 +90,9 @@ namespace rfe
 			// Get camera 2d transform matrix
 			Matrix GetMatrix() const;
 			// Get the screen space position for a 2d camera world space position
-			Vector2D<float> GetWorldToScreen(Vector2D<float> position) const;
+			v2f GetWorldToScreen(v2f position) const;
 			// Get the world space position for a 2d camera screen space position
-			Vector2D<float> GetScreenToWorld(Vector2D<float> position) const;
+			v2f GetScreenToWorld(v2f position) const;
 		private:
 			Camera2D camera2D = { 0 };
 		};

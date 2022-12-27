@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Component.hpp"
+#include "Component.h"
 
 #include "KeyboardController.h"
 #include "CallbacksTester.h"

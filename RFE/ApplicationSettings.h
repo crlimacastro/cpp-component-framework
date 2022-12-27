@@ -1,11 +1,12 @@
 #pragma once
+#include "color.h"
 namespace rfe
 {
 	class RFE_API ApplicationSettings
 	{
 	public:
-		const Color& GetClearColor() const;
-		void SetClearColor(const Color& value);
+		const color& GetClearColor() const;
+		void SetClearColor(const color& value);
 		int GetTargetFPS() const;
 		// Set to define at what FPS the Application will try to run. Set to -1 to let Application run as fast as possible.
 		// (Remember if vsync is on, Application will just keep running at Monitor Refresh Rate.
@@ -17,7 +18,7 @@ namespace rfe
 		void SetForceStopKey(int value);
 
 	private:
-		Color clearColor = RAYWHITE;
+		color clearColor = color::RayWhite();
 		int targetFPS = -1;
 		int forceStopKey = KEY_NULL;
 	};

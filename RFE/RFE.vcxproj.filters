@@ -39,110 +39,107 @@
     <ClInclude Include="RFE.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Log.hpp">
+    <ClInclude Include="Log.h">
       <Filter>src\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Clipboard.hpp">
+    <ClInclude Include="Clipboard.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Cursor.hpp">
+    <ClInclude Include="Cursor.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Monitor.hpp">
+    <ClInclude Include="Monitor.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Event.hpp">
+    <ClInclude Include="Event.h">
       <Filter>src\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Application.hpp">
+    <ClInclude Include="Application.h">
       <Filter>src\Core</Filter>
     </ClInclude>
-    <ClInclude Include="CameraComponent.hpp">
+    <ClInclude Include="CameraComponent.h">
       <Filter>src\ECS\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.hpp">
+    <ClInclude Include="Transform.h">
       <Filter>src\ECS\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Component.hpp">
+    <ClInclude Include="Component.h">
       <Filter>src\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.hpp">
+    <ClInclude Include="Entity.h">
       <Filter>src\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.hpp">
+    <ClInclude Include="Scene.h">
       <Filter>src\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="Prefab.hpp">
+    <ClInclude Include="Prefab.h">
       <Filter>src\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="CameraPrefab.hpp">
+    <ClInclude Include="CameraPrefab.h">
       <Filter>src\ECS\Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="Window.hpp">
+    <ClInclude Include="Window.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Quaternion4D.hpp">
+    <ClInclude Include="q4f.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2D.hpp">
+    <ClInclude Include="v2f.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3D.hpp">
+    <ClInclude Include="v3f.h">
       <Filter>src\Core\Structs</Filter>
     </ClInclude>
-    <ClInclude Include="VectorND.hpp">
-      <Filter>src\Core\Structs</Filter>
-    </ClInclude>
-    <ClInclude Include="Time.hpp">
+    <ClInclude Include="RFETime.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.hpp">
+    <ClInclude Include="Camera.h">
       <Filter>src\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Random.hpp">
+    <ClInclude Include="Random.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Screenshot.hpp">
+    <ClInclude Include="Screenshot.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="URL.hpp">
+    <ClInclude Include="URL.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="File.hpp">
+    <ClInclude Include="File.h">
       <Filter>src\Core\Static</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.hpp">
+    <ClInclude Include="Keyboard.h">
       <Filter>src\Core\Static\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Gamepad.hpp">
+    <ClInclude Include="Gamepad.h">
       <Filter>src\Core\Static\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Mouse.hpp">
+    <ClInclude Include="Mouse.h">
       <Filter>src\Core\Static\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Touch.hpp">
+    <ClInclude Include="Touch.h">
       <Filter>src\Core\Static\Input</Filter>
     </ClInclude>
-    <ClInclude Include="FunctionBuffer.hpp">
-      <Filter>src\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSDrawer.hpp">
+    <ClInclude Include="FPSDrawer.h">
       <Filter>src\ECS\Components</Filter>
     </ClInclude>
-    <ClInclude Include="FPSToggler.hpp">
+    <ClInclude Include="FPSToggler.h">
       <Filter>src\ECS\Components</Filter>
     </ClInclude>
-    <ClInclude Include="FPSCounterPrefab.hpp">
+    <ClInclude Include="FPSCounterPrefab.h">
       <Filter>src\ECS\Prefabs</Filter>
     </ClInclude>
-    <ClInclude Include="ApplicationSettings.hpp">
+    <ClInclude Include="ApplicationSettings.h">
       <Filter>src\Core\ApplicationModules</Filter>
     </ClInclude>
     <ClInclude Include="CameraStack.h">
       <Filter>src\Core\ApplicationModules</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.hpp">
-      <Filter>src\Core\ApplicationModules</Filter>
+    <ClInclude Include="color.h">
+      <Filter>src\Core\Structs</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>src\ECS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -188,7 +185,7 @@
     <ClCompile Include="Transform.cpp">
       <Filter>src\ECS\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
+    <ClCompile Include="RFETime.cpp">
       <Filter>src\Core\Static</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -218,9 +215,6 @@
     <ClCompile Include="Touch.cpp">
       <Filter>src\Core\Static\Input</Filter>
     </ClCompile>
-    <ClCompile Include="FunctionBuffer.cpp">
-      <Filter>src\Core</Filter>
-    </ClCompile>
     <ClCompile Include="FPSCounterPrefab.cpp">
       <Filter>src\ECS\Prefabs</Filter>
     </ClCompile>
@@ -237,7 +231,7 @@
       <Filter>src\Core\ApplicationModules</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>src\Core\ApplicationModules</Filter>
+      <Filter>src\ECS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

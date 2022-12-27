@@ -1,8 +1,7 @@
 #pragma once
 
 namespace rfe {
-	template <typename T>
-	struct Vector2D;
+	struct v2f;
 
 	class Monitor;
 
@@ -15,7 +14,6 @@ namespace rfe {
 		RFE_API bool IsOpen();
 
 		// Visibility Logic
-
 		RFE_API bool IsHidden();
 		RFE_API void SetIsHidden(bool value);
 		RFE_API bool IsDecorated();
@@ -41,12 +39,12 @@ namespace rfe {
 
 		// Icon/Title/Position Logic
 
-		RFE_API const std::shared_ptr<Image> GetIcon();
-		RFE_API void SetIcon(const std::shared_ptr<Image>& value);
-		RFE_API const char* GetTitle();
-		RFE_API void SetTitle(const char* value);
-		RFE_API Vector2D<float> GetPosition();
-		RFE_API void SetPosition(const Vector2D<int>& value);
+		RFE_API const ref<Image> GetIcon();
+		RFE_API void SetIcon(ref<Image> value);
+		RFE_API std::string GetTitle();
+		RFE_API void SetTitle(std::string value);
+		RFE_API v2f GetPosition();
+		RFE_API void SetPosition(const v2f& value);
 
 		// Sizing Logic
 
@@ -70,11 +68,11 @@ namespace rfe {
 
 		// Monitor Logic
 
-		RFE_API std::shared_ptr<Monitor> GetMonitor();
+		RFE_API ref<Monitor> GetMonitor();
 		RFE_API void SetMonitor(int value);
 
 		// DPI Logic
 
-		RFE_API Vector2D<float> GetScaleDPI();
+		RFE_API v2f GetScaleDPI();
 	}
 }

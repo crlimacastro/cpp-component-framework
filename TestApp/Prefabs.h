@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Prefab.hpp"
+#include "Prefab.h"
 
 #include "CallbacksTesterPrefab.h"

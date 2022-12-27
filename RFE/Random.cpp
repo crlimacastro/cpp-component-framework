@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Random.hpp"
+#include "Random.h"
 
 int rfe::Random::GetValue(int min, int max)
 {

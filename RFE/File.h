@@ -13,5 +13,4 @@ namespace rfe::File
 	RFE_API std::string GetPrevDirPath(std::string dirPath);
 	RFE_API std::string GetWorkingDir();
 	RFE_API bool SetWorkingDir(std::string dir);
-};
-
+}

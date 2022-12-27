@@ -1,42 +1,42 @@
 #include "pch.h"
-#include "Cursor.hpp"
+#include "Cursor.h"
 
 void rfe::Cursor::Show()
 {
-    ShowCursor();
+	ShowCursor();
 }
 
 void rfe::Cursor::Hide()
 {
-    HideCursor();
+	HideCursor();
 }
 
 bool rfe::Cursor::IsVisible()
 {
-    return !IsCursorHidden();
+	return !IsCursorHidden();
 }
 
 void rfe::Cursor::ToggleVisible()
 {
-    IsCursorHidden() ? ShowCursor() : HideCursor();
+	IsCursorHidden() ? ShowCursor() : HideCursor();
 }
 
 void rfe::Cursor::Enable()
 {
-    EnableCursor();
+	EnableCursor();
 }
 
 void rfe::Cursor::Disable()
 {
-    DisableCursor();
+	DisableCursor();
 }
 
 bool rfe::Cursor::IsOnScreen()
 {
-    return IsCursorOnScreen();
+	return IsCursorOnScreen();
 }
 
 void rfe::Cursor::Set(Type type)
 {
-    SetMouseCursor((int)type);
+	SetMouseCursor((int)type);
 }

@@ -21,15 +21,25 @@
 // STD Library
 #include <string>
 #include <memory>
+#include <functional>
+
+// STL Containers
 #include <vector>
 #include <unordered_set>
 #include <queue>
-#include <functional>
 
 // Raylib
 #include <raylib.h>
 
-// DLL Export Macro
+// Aliases
+namespace rfe
+{
+	// Reference alias for smart (shared) pointers
+	template<typename T>
+	using ref = std::shared_ptr<T>;
+}
+
+// DLL Import/Export Macro
 #ifdef RFE_EXPORTS
 #define RFE_API __declspec(dllexport)   
 #else

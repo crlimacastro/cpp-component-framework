@@ -1,274 +1,273 @@
 #include "pch.h"
-#include "Window.hpp"
+#include "Window.h"
 
-#include "Vector2D.hpp"
-#include "Monitor.hpp"
+#include "v2f.h"
+#include "Monitor.h"
 
-std::shared_ptr<Image> icon;
-const char* title = "Raylib Fae Engine App";
+rfe::ref<Image> icon;
+std::string title = "Raylib Fae Engine App";
 rfe::Window::WindowSize size{ 1280, 1024 };
 rfe::Window::WindowSize minSize{ 640, 480 };
 
 void rfe::Window::Open()
 {
-    // Cannot open the window once it has already been opened once
-    if (GetWindowHandle())
-        return;
+	// Cannot open the window once it has already been opened once
+	if (GetWindowHandle())
+		return;
 
-    InitWindow(size.width, size.height, title);
+	InitWindow(size.width, size.height, title.c_str());
 }
 
 bool rfe::Window::ShouldClose()
 {
-    return WindowShouldClose();
+	return WindowShouldClose();
 }
 
 void rfe::Window::Close()
 {
-    // If there is no window return
-    if (!GetWindowHandle())
-        return;
+	// If there is no window return
+	if (!GetWindowHandle())
+		return;
 
-    CloseWindow();
+	CloseWindow();
 }
 
 bool rfe::Window::IsOpen()
 {
-    return GetWindowHandle();
+	return GetWindowHandle();
 }
 
 bool rfe::Window::IsHidden()
 {
-    return IsWindowHidden();
+	return IsWindowHidden();
 }
 
 void rfe::Window::SetIsHidden(bool value)
 {
-    value ? SetWindowState(FLAG_WINDOW_HIDDEN) : ClearWindowState(FLAG_WINDOW_HIDDEN);
+	value ? SetWindowState(FLAG_WINDOW_HIDDEN) : ClearWindowState(FLAG_WINDOW_HIDDEN);
 }
 
 bool rfe::Window::IsDecorated()
 {
-    return !IsWindowState(FLAG_WINDOW_UNDECORATED);
+	return !IsWindowState(FLAG_WINDOW_UNDECORATED);
 }
 
 void rfe::Window::SetIsDecorated(bool value)
 {
-    value ? ClearWindowState(FLAG_WINDOW_UNDECORATED) : SetWindowState(FLAG_WINDOW_UNDECORATED);
+	value ? ClearWindowState(FLAG_WINDOW_UNDECORATED) : SetWindowState(FLAG_WINDOW_UNDECORATED);
 }
 
 bool rfe::Window::IsMinimized()
 {
-    return IsWindowMinimized();
+	return IsWindowMinimized();
 }
 
 void rfe::Window::SetIsMinimized(bool value)
 {
-    value ? SetWindowState(FLAG_WINDOW_MINIMIZED) : ClearWindowState(FLAG_WINDOW_MINIMIZED);
+	value ? SetWindowState(FLAG_WINDOW_MINIMIZED) : ClearWindowState(FLAG_WINDOW_MINIMIZED);
 }
 
 void rfe::Window::Minimize()
 {
-    MinimizeWindow();
+	MinimizeWindow();
 }
 
 bool rfe::Window::IsMaximized()
 {
-    return IsWindowMaximized();
+	return IsWindowMaximized();
 }
 
 void rfe::Window::SetIsMaximized(bool value)
 {
-    value ? SetWindowState(FLAG_WINDOW_MAXIMIZED) : ClearWindowState(FLAG_WINDOW_MAXIMIZED);
+	value ? SetWindowState(FLAG_WINDOW_MAXIMIZED) : ClearWindowState(FLAG_WINDOW_MAXIMIZED);
 }
 
 void rfe::Window::Maximize()
 {
-    MaximizeWindow();
+	MaximizeWindow();
 }
 
 bool rfe::Window::IsFocused()
 {
-    return IsWindowFocused();
+	return IsWindowFocused();
 }
 
 void rfe::Window::SetIsFocused(bool value)
 {
-    value ? ClearWindowState(FLAG_WINDOW_UNFOCUSED) : SetWindowState(FLAG_WINDOW_UNFOCUSED);
+	value ? ClearWindowState(FLAG_WINDOW_UNFOCUSED) : SetWindowState(FLAG_WINDOW_UNFOCUSED);
 }
 
 bool rfe::Window::IsAlwaysOnTop()
 {
-    return IsWindowState(FLAG_WINDOW_TOPMOST);
+	return IsWindowState(FLAG_WINDOW_TOPMOST);
 }
 
 RFE_API void rfe::Window::SetIsAlwaysOnTop(bool value)
 {
-    value ? SetWindowState(FLAG_WINDOW_TOPMOST) : ClearWindowState(FLAG_WINDOW_TOPMOST);
+	value ? SetWindowState(FLAG_WINDOW_TOPMOST) : ClearWindowState(FLAG_WINDOW_TOPMOST);
 }
 
 bool rfe::Window::IsResizable()
 {
-    return IsWindowState(FLAG_WINDOW_RESIZABLE);
+	return IsWindowState(FLAG_WINDOW_RESIZABLE);
 }
 
 void rfe::Window::SetIsResizable(bool value)
 {
-    value ? SetWindowState(FLAG_WINDOW_RESIZABLE) : ClearWindowState(FLAG_WINDOW_RESIZABLE);
+	value ? SetWindowState(FLAG_WINDOW_RESIZABLE) : ClearWindowState(FLAG_WINDOW_RESIZABLE);
 }
 
 bool rfe::Window::IsResized()
 {
-    return IsWindowResized();
+	return IsWindowResized();
 }
 
 bool rfe::Window::IsFullScreen()
 {
-    return IsWindowFullscreen();
+	return IsWindowFullscreen();
 }
 
 void rfe::Window::SetFullScreen(bool value)
 {
-    if (value && !IsWindowFullscreen())
-    {
-        ToggleFullScreen();
-    }
-    else if (!value && IsWindowFullscreen())
-    {
-        ToggleFullScreen();
-    }
+	if (value && !IsWindowFullscreen())
+	{
+		ToggleFullScreen();
+	}
+	else if (!value && IsWindowFullscreen())
+	{
+		ToggleFullScreen();
+	}
 }
 
 void rfe::Window::ToggleFullScreen()
 {
-    ToggleFullscreen();
+	ToggleFullscreen();
 }
 
 void rfe::Window::Restore()
 {
-    RestoreWindow();
+	RestoreWindow();
 }
 
-const std::shared_ptr<Image> rfe::Window::GetIcon()
+const rfe::ref<Image> rfe::Window::GetIcon()
 {
-    return icon;
+	return icon;
 }
 
-void rfe::Window::SetIcon(const std::shared_ptr<Image>& value)
+void rfe::Window::SetIcon(ref<Image> value)
 {
-    icon = value;
-    value ? SetWindowIcon(*value) : SetWindowIcon(Image());
+	icon = value;
+	value ? SetWindowIcon(*value) : SetWindowIcon(Image());
 }
 
-const char* rfe::Window::GetTitle()
+std::string rfe::Window::GetTitle()
 {
-    return title;
+	return title;
 }
 
-void rfe::Window::SetTitle(const char* value)
+void rfe::Window::SetTitle(std::string value)
 {
-    title = value;
-    SetWindowTitle(value);
+	title = value;
+	SetWindowTitle(value.c_str());
 }
 
-rfe::Vector2D<float> rfe::Window::GetPosition()
+rfe::v2f rfe::Window::GetPosition()
 {
-    Vector2 position = GetWindowPosition();
-    return {position.x, position.y};
+	Vector2 position = GetWindowPosition();
+	return { position.x, position.y };
 }
 
-void rfe::Window::SetPosition(const Vector2D<int>& value)
+void rfe::Window::SetPosition(const v2f& value)
 {
-    SetWindowPosition(value.x, value.y);
+	SetWindowPosition(value.x, value.y);
 }
 
 const rfe::Window::WindowSize& rfe::Window::GetSize()
 {
-    return size;
+	return size;
 }
 
 void rfe::Window::SetSize(int width, int height)
 {
-    width = std::max(width, 0);
-    height = std::max(height, 0);
-    size = WindowSize{ width, height };
-    SetWindowSize(width, height);
+	width = std::max(width, 0);
+	height = std::max(height, 0);
+	size = WindowSize{ width, height };
+	SetWindowSize(width, height);
 }
 
 int rfe::Window::GetWidth()
 {
-    return size.width;
+	return size.width;
 }
 
 void rfe::Window::SetWidth(int value)
 {
-    value = std::max(value, 0);
-    size.width = value;
-    SetWindowSize(value, GetScreenHeight());
+	value = std::max(value, 0);
+	size.width = value;
+	SetWindowSize(value, GetScreenHeight());
 }
 
 int rfe::Window::GetHeight()
 {
-    return size.height;
+	return size.height;
 }
 
 void rfe::Window::SetHeight(int value)
 {
-    value = std::max(value, 0);
-    size.height = value;
-    SetWindowSize(GetScreenWidth(), value);
+	value = std::max(value, 0);
+	size.height = value;
+	SetWindowSize(GetScreenWidth(), value);
 }
 
 const rfe::Window::WindowSize& rfe::Window::GetMinSize()
 {
-    return minSize;
+	return minSize;
 }
 
 void rfe::Window::SetMinSize(int width, int height)
 {
-    width = std::max(width, 0);
-    height = std::max(height, 0);
-    minSize = WindowSize{ width, height };
-    SetWindowMinSize(width, height);
+	width = std::max(width, 0);
+	height = std::max(height, 0);
+	minSize = WindowSize{ width, height };
+	SetWindowMinSize(width, height);
 }
 
 int rfe::Window::GetMinWidth()
 {
-    return minSize.width;
+	return minSize.width;
 }
 
 void rfe::Window::SetMinWidth(int value)
 {
-    value = std::max(value, 0);
-    minSize.width = value;
-    SetWindowMinSize(value, minSize.height);
+	value = std::max(value, 0);
+	minSize.width = value;
+	SetWindowMinSize(value, minSize.height);
 }
 
 int rfe::Window::GetMinHeight()
 {
-    return minSize.height;
+	return minSize.height;
 }
 
 void rfe::Window::SetMinHeight(int value)
 {
-    value = std::max(value, 0);
-    minSize.height = value;
-    SetWindowMinSize(minSize.width, value);
+	value = std::max(value, 0);
+	minSize.height = value;
+	SetWindowMinSize(minSize.width, value);
 }
 
-std::shared_ptr<rfe::Monitor> rfe::Window::GetMonitor()
+rfe::ref<rfe::Monitor> rfe::Window::GetMonitor()
 {
-    return Monitor::Get(GetCurrentMonitor());
+	return Monitor::Get(GetCurrentMonitor());
 }
 
 void rfe::Window::SetMonitor(int value)
 {
-    if (value < 0 || value >= GetMonitorCount()) return;
-    SetWindowMonitor(value);
+	if (value < 0 || value >= GetMonitorCount()) return;
+	SetWindowMonitor(value);
 }
 
-rfe::Vector2D<float> rfe::Window::GetScaleDPI()
+rfe::v2f rfe::Window::GetScaleDPI()
 {
-    Vector2 scaleDPI = GetWindowScaleDPI();
-    return Vector2D<float>{scaleDPI.x, scaleDPI.y};
+	return v2f(GetWindowScaleDPI());
 }

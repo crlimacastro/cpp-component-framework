@@ -1,13 +1,18 @@
 #include "pch.h"
-#include "Entity.hpp"
+#include "Entity.h"
 
-#include "Component.hpp"
-#include "SceneManager.hpp"
-#include "Application.hpp"
+#include "Component.h"
+#include "SceneManager.h"
+#include "Application.h"
 
-std::shared_ptr<rfe::Entity> rfe::Entity::Create()
+rfe::ref<rfe::Entity> rfe::Entity::Create()
 {
-	return std::shared_ptr<Entity>(new Entity());
+	return std::make_shared<Entity>();
+}
+
+void rfe::Entity::Destroy(rfe::ref<Entity> entity)
+{
+	SceneManager::GetCurrentScene()->RemoveEntity(entity);
 }
 
 bool rfe::Entity::GetEnabled() const
@@ -113,11 +118,6 @@ void rfe::Entity::ClearChildren()
 	}
 
 	children.clear();
-}
-
-void rfe::Entity::Destroy(std::shared_ptr<Entity> entity)
-{
-	Application::GetActive()->sceneManager.GetCurrentScene()->RemoveEntity(entity);
 }
 
 void rfe::Entity::Load()

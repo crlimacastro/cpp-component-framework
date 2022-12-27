@@ -6,4 +6,4 @@ namespace rfe::Random
 	RFE_API int GetValue(int min, int max);
 	// Set the seed for the random number generator
 	RFE_API void SetSeed(unsigned int seed);
-};
+}

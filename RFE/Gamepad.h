@@ -37,7 +37,7 @@ namespace rfe
 			TriggerRightPressure = 5      // Gamepad back trigger right, pressure level: [1..-1]
 		};
 	public:
-		static std::shared_ptr<Gamepad> Get(int gamepad = 0);
+		static ref<Gamepad> Get(int gamepad = 0);
 		std::string GetName() const;
 		bool ButtonPressed(Button button) const;
 		bool ButtonDown(Button button) const;
@@ -54,6 +54,6 @@ namespace rfe
 
 	namespace Gamepads
 	{
-		RFE_API std::shared_ptr<std::vector<std::shared_ptr<Gamepad>>> GetGamepads();
+		RFE_API std::vector<ref<Gamepad>> GetGamepads();
 	}
 }

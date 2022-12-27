@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "Mouse.hpp"
+#include "Mouse.h"
 
-#include "Vector2D.hpp"
+#include "v2f.h"
 
 bool rfe::Mouse::ButtonPressed(Button button)
 {
@@ -23,14 +23,14 @@ bool rfe::Mouse::ButtonUp(Button button)
 	return IsMouseButtonUp((int)button);
 }
 
-rfe::Vector2D<float> rfe::Mouse::GetPosition()
+rfe::v2f rfe::Mouse::GetPosition()
 {
-	return Vector2D<float>::From(GetMousePosition());
+	return v2f(GetMousePosition());
 }
 
-rfe::Vector2D<float> rfe::Mouse::GetPositionDelta()
+rfe::v2f rfe::Mouse::GetPositionDelta()
 {
-	return Vector2D<float>::From(GetMouseDelta());
+	return v2f(GetMouseDelta());
 }
 
 void rfe::Mouse::SetPosition(int x, int y)
